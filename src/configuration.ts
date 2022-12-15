@@ -1,5 +1,5 @@
-import bunyan from "bunyan";
-import dotenv from "dotenv";
+import bunyan from 'bunyan';
+import dotenv from 'dotenv';
 dotenv.config({});
 
 class Config {
@@ -11,21 +11,20 @@ class Config {
   public CLIENT_URL: string | undefined;
   public REDIS_HOST: string | undefined;
 
-  private readonly DEFAULT_DATABASE_URL =
-    "mongodb://127.0.0.1:27017/PeepsArena";
+  private readonly DEFAULT_DATABASE_URL = 'mongodb://127.0.0.1:27017/PeepsArena';
 
   constructor() {
     this.MONGO_URI = process.env.MONGO_URI || this.DEFAULT_DATABASE_URL;
-    this.JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET || "1234";
-    this.COOKIE_SECRET_ONE = process.env.COOKIE_SECRET_ONE || "";
-    this.COOKIE_SECRET_TWO = process.env.COOKIE_SECRET_TWO || "";
-    this.NODE_ENV = process.env.NODE_ENV || "";
-    this.CLIENT_URL = process.env.CLIENT_URL || "";
-    this.REDIS_HOST = process.env.REDIS_HOST || "";
+    this.JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET || '1234';
+    this.COOKIE_SECRET_ONE = process.env.COOKIE_SECRET_ONE || '';
+    this.COOKIE_SECRET_TWO = process.env.COOKIE_SECRET_TWO || '';
+    this.NODE_ENV = process.env.NODE_ENV || '';
+    this.CLIENT_URL = process.env.CLIENT_URL || '';
+    this.REDIS_HOST = process.env.REDIS_HOST || '';
   }
 
   public createLogger(name: string): bunyan {
-    return bunyan.createLogger({ name, level: "debug" });
+    return bunyan.createLogger({ name, level: 'debug' });
   }
 
   public validateConfig(): void {
