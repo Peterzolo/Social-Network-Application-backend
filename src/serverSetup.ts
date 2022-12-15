@@ -1,32 +1,22 @@
-import {
-  Request,
-  Response,
-  json,
-  Application,
-  urlencoded,
-  NextFunction,
-} from "express";
-import http from "http";
-import cors from "cors";
-import helmet from "helmet";
-import hpp from "hpp";
-import compression from "compression";
-import cookieSession from "cookie-session";
-import HTTP_STATUS from "http-status-codes";
-import "express-async-errors";
-import { Server } from "socket.io";
-import { createClient } from "redis";
-import { createAdapter } from "@socket.io/redis-adapter";
-import { config } from "./configuration";
-import { routeWrapper } from "./routes";
-import Logger from "bunyan";
-import {
-  CustomError,
-  IErrorResponse,
-} from "@global/helpers/customErrorHandler";
+import { Request, Response, json, Application, urlencoded, NextFunction } from 'express';
+import http from 'http';
+import cors from 'cors';
+import helmet from 'helmet';
+import hpp from 'hpp';
+import compression from 'compression';
+import cookieSession from 'cookie-session';
+import HTTP_STATUS from 'http-status-codes';
+import 'express-async-errors';
+import { Server } from 'socket.io';
+import { createClient } from 'redis';
+import { createAdapter } from '@socket.io/redis-adapter';
+import { config } from '@root/configuration';
+import { routeWrapper } from '@root/routes';
+import Logger from 'bunyan';
+import { CustomError, IErrorResponse } from '@global/helpers/customErrorHandler';
 
 const PORT = process.env.PORT || 5000;
-const log: Logger = config.createLogger("server-setup");
+const log: Logger = config.createLogger('server-setup');
 
 export class PeepsArena {
   private app: Application;
@@ -44,13 +34,13 @@ export class PeepsArena {
   }
 
   private securityMiddleware(app: Application): void {
-    app.set("trust proxy", 1);
+    app.set('trust proxy', 1);
     app.use(
       cookieSession({
-        name: "session",
+        name: 'session',
         keys: [config.COOKIE_SECRET_ONE!, config.COOKIE_SECRET_TWO!],
         maxAge: 24 * 7 * 3600000,
-        secure: config.NODE_ENV !== "development",
+        secure: config.NODE_ENV !== 'development'
         // sameSite: "none", // comment this line when running the server locally
       })
     );
@@ -61,15 +51,15 @@ export class PeepsArena {
         origin: config.CLIENT_URL,
         credentials: true,
         optionsSuccessStatus: 200,
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
       })
     );
   }
 
   private standardMiddleware(app: Application): void {
     app.use(compression());
-    app.use(json({ limit: "50mb" }));
-    app.use(urlencoded({ extended: true, limit: "50mb" }));
+    app.use(json({ limit: '50mb' }));
+    app.use(urlencoded({ extended: true, limit: '50mb' }));
   }
 
   private routesMiddleware(app: Application): void {
@@ -77,27 +67,17 @@ export class PeepsArena {
   }
 
   private globalErrorHandler(app: Application): void {
-    app.all("*", (req: Request, res: Response) => {
-      res
-        .status(HTTP_STATUS.NOT_FOUND)
-        .json({ message: `${req.originalUrl} not found` });
+    app.all('*', (req: Request, res: Response) => {
+      res.status(HTTP_STATUS.NOT_FOUND).json({ message: `${req.originalUrl} not found` });
     });
 
-    app.use(
-      (
-        error: IErrorResponse,
-        _req: Request,
-        res: Response,
-        next: NextFunction
-      ) => {
-        // log.error(error);
-        log.error(error);
-        if (error instanceof CustomError) {
-          return res.status(error.statusCode).json(error.serializeErrors());
-        }
-        next();
+    app.use((error: IErrorResponse, _req: Request, res: Response, next: NextFunction) => {
+      log.error(error);
+      if (error instanceof CustomError) {
+        return res.status(error.statusCode).json(error.serializeErrors());
       }
-    );
+      next();
+    });
   }
 
   private async startServer(app: Application): Promise<void> {
@@ -115,8 +95,8 @@ export class PeepsArena {
     const io: Server = new Server(httpServer, {
       cors: {
         origin: config.CLIENT_URL,
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      },
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+      }
     });
     const pubClient = createClient({ url: config.REDIS_HOST });
     const subClient = pubClient.duplicate();
@@ -132,5 +112,6 @@ export class PeepsArena {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private socketIOConnections(io: Server): void {}
 }

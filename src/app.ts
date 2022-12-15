@@ -1,8 +1,8 @@
-import express, { Express } from "express";
-import { mongoDbConnect } from "./dbSetup";
-import { PeepsArena } from "./serverSetup";
-import dotenv from "dotenv";
-import { config } from "./configuration";
+import express, { Express } from 'express';
+import { mongoDbConnect } from './dbSetup';
+import { PeepsArena } from './serverSetup';
+import dotenv from 'dotenv';
+import { config } from './configuration';
 dotenv.config();
 
 class Application {
