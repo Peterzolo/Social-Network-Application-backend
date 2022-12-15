@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { config } from './configuration';
+import { config } from '@root/configuration';
 import Logger from 'bunyan';
 
 const log: Logger = config.createLogger('Database-Setup');
@@ -21,14 +21,3 @@ export const mongoDbConnect = () => {
 
   mongoose.connection.on('disconnected', connect);
 };
-
-// export const mongoDbConnect = async () => {
-//   mongoose.set("strictQuery", true);
-//   try {
-//     await mongoose.connect("mongodb://127.0.0.1:27017/peeps");
-//     console.log("MongoDB connected");
-//   } catch (err) {
-//     console.log(err);
-//     process.exit(1);
-//   }
-// };
