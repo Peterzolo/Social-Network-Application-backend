@@ -1,5 +1,6 @@
 import bunyan from 'bunyan';
 import dotenv from 'dotenv';
+import cloudinary from 'cloudinary';
 dotenv.config({});
 
 class Config {
@@ -10,6 +11,9 @@ class Config {
   public NODE_ENV: string | undefined;
   public CLIENT_URL: string | undefined;
   public REDIS_HOST: string | undefined;
+  public CLOUDINARY_API_KEY: string | undefined;
+  public CLOUDINARY_API_SECRET: string | undefined;
+  public CLOUDINARY_CLOUD_NAME: string | undefined;
 
   private readonly DEFAULT_DATABASE_URL = 'mongodb://127.0.0.1:27017/PeepsArena';
 
@@ -21,6 +25,9 @@ class Config {
     this.NODE_ENV = process.env.NODE_ENV || '';
     this.CLIENT_URL = process.env.CLIENT_URL || '';
     this.REDIS_HOST = process.env.REDIS_HOST || '';
+    this.CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY || '';
+    this.CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET || '';
+    this.CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || '';
   }
 
   public createLogger(name: string): bunyan {
@@ -33,6 +40,14 @@ class Config {
         throw new Error(`Configuration ${key} is undefined.`);
       }
     }
+  }
+
+  public cloudinaryConfig(): void {
+    cloudinary.v2.config({
+      cloud_name: this.CLOUDINARY_CLOUD_NAME,
+      api_key: this.CLOUDINARY_API_KEY,
+      api_secret: this.CLOUDINARY_API_SECRET
+    });
   }
 }
 
