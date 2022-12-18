@@ -1,5 +1,11 @@
+import { ServerError } from '@global/helpers/customErrorHandler';
+import { config } from '@root/configuration';
 import { BaseCache } from '@service/redis/Base-cache';
 import { IUserDocument } from '@user/interfaces/user.interface';
+
+import Logger from 'bunyan';
+
+const log: Logger = config.createLogger('userCache');
 
 export class UserCache extends BaseCache {
   constructor() {
@@ -86,7 +92,7 @@ export class UserCache extends BaseCache {
       await this.client.HSET(`users:${key}`, dataToSave);
     } catch (error) {
       log.error(error);
-      throw new ServerError('Server error. Try again.');
+      throw new ServerError('Error Occured. Try again.');
     }
   }
 }

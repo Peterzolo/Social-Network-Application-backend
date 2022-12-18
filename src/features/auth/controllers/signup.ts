@@ -14,6 +14,8 @@ import { Helpers } from '@global/helpers';
 // import { Helpers } from '@global/helpers/helpers';
 import { UploadApiResponse } from 'cloudinary';
 import { uploads } from '@global/helpers/cloudinary-upload';
+import { IUserDocument } from '@user/interfaces/user.interface';
+import { UserCache } from '@service/redis/userCache';
 // import HTTP_STATUS from 'http-status-codes';
 // import { IUserDocument } from '@user/interfaces/user.interface';
 // import { UserCache } from '@service/redis/user.cache';
@@ -23,7 +25,7 @@ import { uploads } from '@global/helpers/cloudinary-upload';
 // import { config } from '@root/config';
 // import { BadRequestError } from '@global/helpers/error-handler';
 
-// const userCache: UserCache = new UserCache();
+const userCache: UserCache = new UserCache();
 
 export class SignUp {
   @joiValidation(registerSchema)
@@ -93,40 +95,40 @@ export class SignUp {
   //   );
   // }
 
-  // private userData(data: IAuthDocument, userObjectId: ObjectId): IUserDocument {
-  //   const { _id, username, email, uId, password, avatarColor } = data;
-  //   return {
-  //     _id: userObjectId,
-  //     authId: _id,
-  //     uId,
-  //     username: Helpers.firstLetterUppercase(username),
-  //     email,
-  //     password,
-  //     avatarColor,
-  //     profilePicture: '',
-  //     blocked: [],
-  //     blockedBy: [],
-  //     work: '',
-  //     location: '',
-  //     school: '',
-  //     quote: '',
-  //     bgImageVersion: '',
-  //     bgImageId: '',
-  //     followersCount: 0,
-  //     followingCount: 0,
-  //     postsCount: 0,
-  //     notifications: {
-  //       messages: true,
-  //       reactions: true,
-  //       comments: true,
-  //       follows: true
-  //     },
-  //     social: {
-  //       facebook: '',
-  //       instagram: '',
-  //       twitter: '',
-  //       youtube: ''
-  //     }
-  //   } as unknown as IUserDocument;
-  // }
+  private userData(data: IAuthDocument, userObjectId: ObjectId): IUserDocument {
+    const { _id, username, email, uId, password, avatarColor } = data;
+    return {
+      _id: userObjectId,
+      authId: _id,
+      uId,
+      username: Helpers.firstLetterUppercase(username),
+      email,
+      password,
+      avatarColor,
+      profilePicture: '',
+      blocked: [],
+      blockedBy: [],
+      work: '',
+      location: '',
+      school: '',
+      quote: '',
+      bgImageVersion: '',
+      bgImageId: '',
+      followersCount: 0,
+      followingCount: 0,
+      postsCount: 0,
+      notifications: {
+        messages: true,
+        reactions: true,
+        comments: true,
+        follows: true
+      },
+      social: {
+        facebook: '',
+        instagram: '',
+        twitter: '',
+        youtube: ''
+      }
+    } as unknown as IUserDocument;
+  }
 }

@@ -3,7 +3,6 @@ import Logger from 'bunyan';
 import { config } from '@root/configuration';
 
 export type RedisClient = ReturnType<typeof createClient>;
-
 export abstract class BaseCache {
   client: RedisClient;
   log: Logger;
