@@ -15,6 +15,8 @@ import JWT from 'jsonwebtoken';
 import { config } from '@root/configuration';
 import { BadRequestError } from '@global/helpers/customErrorHandler';
 import { registerSchema } from '@auth/schemes/register';
+import { omit } from 'lodash';
+import { authQueue } from '@service/queues/authQueue';
 
 const userCache: UserCache = new UserCache();
 
@@ -55,9 +57,13 @@ export class SignUp {
     // authQueue.addAuthUserJob('addAuthUserToDB', { value: authData });
     // userQueue.addUserJob('addUserToDB', { value: userDataForCache });
 
-    const userJwt: string = SignUp.prototype.signToken(authData, userObjectId);
-    req.session = { jwt: userJwt };
-    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
+    omit(userDataForCache, ['uIl', 'username', 'email', 'avatarColor', 'password']);
+    authQueue.addAuthUserJob('addAuthUserJob', { value: userDataForCache });
+
+    // const userJwt: string = SignUp.prototype.signToken(authData, userObjectId);
+    // req.session = { jwt: userJwt };
+    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', authData });
+    // res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
   }
 
   private signToken(data: IAuthDocument, userObjectId: ObjectId): string {
