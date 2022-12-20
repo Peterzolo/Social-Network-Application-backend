@@ -7,6 +7,7 @@ export const routeWrapper = (app: Application) => {
   const routes = () => {
     app.use('/queues', serverAdapter.getRouter());
     app.use(BASE_PATH, authRoutes.routes());
+    app.use(BASE_PATH, authRoutes.signoutRoute());
   };
   routes();
 };
