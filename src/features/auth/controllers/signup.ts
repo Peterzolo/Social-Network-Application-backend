@@ -10,14 +10,11 @@ import HTTP_STATUS from 'http-status-codes';
 import { IUserDocument } from '@user/interfaces/user.interface';
 import { UserCache } from '@service/redis/userCache';
 import JWT from 'jsonwebtoken';
-// import { authQueue } from '@service/queues/auth.queue';
-// import { userQueue } from '@service/queues/user.queue';
+import { authQueue } from '@service/queues/authQueue';
+import { userQueue } from '@service/queues/userQueue';
 import { config } from '@root/configuration';
 import { BadRequestError } from '@global/helpers/customErrorHandler';
 import { registerSchema } from '@auth/schemes/register';
-import { omit } from 'lodash';
-import { authQueue } from '@service/queues/authQueue';
-import { userQueue } from '@service/queues/userQueue';
 
 const userCache: UserCache = new UserCache();
 
@@ -27,7 +24,7 @@ export class SignUp {
     const { username, email, password, avatarColor, avatarImage } = req.body;
     const checkIfUserExist: IAuthDocument = await authService.getUserByUsernameOrEmail(username, email);
     if (checkIfUserExist) {
-      throw new BadRequestError('Invalid credentials');
+      throw new BadRequestError('User already exists');
     }
 
     const authObjectId: ObjectId = new ObjectId();
@@ -51,21 +48,16 @@ export class SignUp {
 
     // Add to redis cache
     const userDataForCache: IUserDocument = SignUp.prototype.userData(authData, userObjectId);
-    userDataForCache.profilePicture = `https://res.cloudinary.com/dyamr9ym3/image/upload/v${result.version}/${userObjectId}`;
+    userDataForCache.profilePicture = `https://res.cloudinary.com/dzj0v4upp/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     // Add to database
-    // authQueue.addAuthUserJob('addAuthUserToDB', { value: authData });
-    // userQueue.addUserJob('addUserToDB', { value: userDataForCache });
+    authQueue.addAuthUserJob('addAuthUserToDB', { value: authData });
+    userQueue.addUserJob('addUserToDB', { value: userDataForCache });
 
-    omit(userDataForCache, ['uIl', 'username', 'email', 'avatarColor', 'password']);
-    authQueue.addAuthUserJob('addAuthUserJob', { value: userDataForCache });
-    userQueue.addUserJob('addUserToDatabase', { value: userDataForCache });
-
-    // const userJwt: string = SignUp.prototype.signToken(authData, userObjectId);
-    // req.session = { jwt: userJwt };
-    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', authData });
-    // res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
+    const userJwt: string = SignUp.prototype.signToken(authData, userObjectId);
+    req.session = { jwt: userJwt };
+    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
   }
 
   private signToken(data: IAuthDocument, userObjectId: ObjectId): string {
