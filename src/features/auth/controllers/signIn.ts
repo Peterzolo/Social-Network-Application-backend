@@ -23,11 +23,12 @@ export class LogIn {
     if (!passwordsMatch) {
       throw new BadRequestError('Invalid credentials');
     }
-    // const user: IUserDocument = await userService.getUserByAuthId(`${existingUser._id}`);
+    const user: IUserDocument = await userService.getUserByAuthId(`${existingUser._id}`);
+    console.log('USER', user);
     const userJwt: string = JWT.sign(
       {
-        // userId: user._id,
-        userId: existingUser._id,
+        userId: user._id,
+
         uId: existingUser.uId,
         email: existingUser.email,
         username: existingUser.username,
@@ -36,16 +37,15 @@ export class LogIn {
       config.JWT_TOKEN_SECRET!
     );
     req.session = { jwt: userJwt };
-    // const userDocument: IUserDocument = {
-    //   ...user,
-    //   authId: existingUser!._id,
-    //   username: existingUser!.username,
-    //   email: existingUser!.email,
-    //   avatarColor: existingUser!.avatarColor,
-    //   uId: existingUser!.uId,
-    //   createdAt: existingUser!.createdAt
-    // } as IUserDocument;
-    res.status(HTTP_STATUS.OK).json({ message: 'User login successfully', user: existingUser, token: userJwt });
-    // res.status(HTTP_STATUS.OK).json({ message: 'User login successfully', user: userDocument, token: userJwt });
+    const userDocument: IUserDocument = {
+      ...user,
+      authId: existingUser!._id,
+      username: existingUser!.username,
+      email: existingUser!.email,
+      avatarColor: existingUser!.avatarColor,
+      uId: existingUser!.uId,
+      createdAt: existingUser!.createdAt
+    } as IUserDocument;
+    res.status(HTTP_STATUS.OK).json({ message: 'User logged in successfully', user: userDocument, token: userJwt });
   }
 }
