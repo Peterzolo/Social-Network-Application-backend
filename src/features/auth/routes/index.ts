@@ -13,7 +13,7 @@ class AuthRoutes {
 
   public routes(): Router {
     this.router.post('/register', SignUp.prototype.create);
-    this.router.post('/signin', LogIn.prototype.read);
+    this.router.post('/login', LogIn.prototype.read);
     // this.router.post('/forgot-password', Password.prototype.create);
     // this.router.post('/reset-password/:token', Password.prototype.update);
 
