@@ -17,6 +17,7 @@ import { BadRequestError } from '@global/helpers/customErrorHandler';
 import { registerSchema } from '@auth/schemes/register';
 import { omit } from 'lodash';
 import { authQueue } from '@service/queues/authQueue';
+import { userQueue } from '@service/queues/userQueue';
 
 const userCache: UserCache = new UserCache();
 
@@ -59,6 +60,7 @@ export class SignUp {
 
     omit(userDataForCache, ['uIl', 'username', 'email', 'avatarColor', 'password']);
     authQueue.addAuthUserJob('addAuthUserJob', { value: userDataForCache });
+    userQueue.addUserJob('addUserToDatabase', { value: userDataForCache });
 
     // const userJwt: string = SignUp.prototype.signToken(authData, userObjectId);
     // req.session = { jwt: userJwt };
