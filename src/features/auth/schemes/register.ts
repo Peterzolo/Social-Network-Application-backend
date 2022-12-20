@@ -1,16 +1,16 @@
 import Joi, { ObjectSchema } from 'joi';
 
 const registerSchema: ObjectSchema = Joi.object().keys({
-  username: Joi.string().required().min(4).max(8).messages({
+  username: Joi.string().required().min(8).max(20).messages({
     'string.base': 'Username must be of type string',
-    'string.min': 'Wrong credentials',
-    'string.max': 'Wrong credentials',
+    'string.min': 'username must be at least 8 characters',
+    'string.max': 'username must be between 8 and 20 long characters',
     'string.empty': 'Username is a required field'
   }),
-  password: Joi.string().required().min(4).max(8).messages({
+  password: Joi.string().required().min(8).max(16).messages({
     'string.base': 'Password must be of type string',
-    'string.min': 'Wrong credentials',
-    'string.max': 'Wrong credentials',
+    'string.min': 'Password must be at least 8 characters',
+    'string.max': 'Password must be between 8 and 16 characters long',
     'string.empty': 'Password is a required field'
   }),
   email: Joi.string().required().email().messages({

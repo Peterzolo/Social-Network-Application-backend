@@ -24,7 +24,6 @@ export class LogIn {
       throw new BadRequestError('Invalid credentials');
     }
     const user: IUserDocument = await userService.getUserByAuthId(`${existingUser._id}`);
-    console.log('USER', user);
     const userJwt: string = JWT.sign(
       {
         userId: user._id,

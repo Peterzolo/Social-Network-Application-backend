@@ -1,7 +1,7 @@
 import { BaseCache } from '@service/redis/Base-cache';
 // import { INotificationSettings, ISocialLinks, IUserDocument } from '@user/interfaces/user.interface';
 import Logger from 'bunyan';
-import { indexOf, findIndex } from 'lodash';
+import { indexOf, findIndex, values } from 'lodash';
 import { config } from '@root/configuration';
 import { ServerError } from '@global/helpers/customErrorHandler';
 import { Helpers } from '@global/helpers';
@@ -94,9 +94,11 @@ export class UserCache extends BaseCache {
         await this.client.connect();
       }
       await this.client.ZADD('user', { score: parseInt(userUId, 10), value: `${key}` });
+      await this.client.HSET(`users: ${key}`, { value: `${dataToSave}` });
       // await this.client.HSET(`users:${key}`, dataToSave);
     } catch (error) {
       log.error(error);
+      console.log(error);
       throw new ServerError('Server error. Try again.');
     }
   }
