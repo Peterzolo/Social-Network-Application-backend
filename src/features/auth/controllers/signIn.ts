@@ -7,9 +7,13 @@ import { authService } from '@service/db/authService';
 import { IAuthDocument } from '@auth/interfaces/auth-interface';
 import { BadRequestError } from '@global/helpers/customErrorHandler';
 import { userService } from '@service/db/userService';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IResetPasswordParams, IUserDocument } from '@user/interfaces/user.interface';
 import { loginSchema } from '@auth/schemes/login';
-import { mailTransport } from '@service/email/mailTransport';
+import { forgotPasswordTemplate } from '@service/email/email-template/forgot-password/forgotPasswordTemplate';
+import { emailQueue } from '@service/queues/emailQueues';
+import moment from 'moment';
+import publicIp from 'ip';
+import { resetPasswordTemplate } from '@service/email/email-template/password-reset/resetPassword';
 
 export class LogIn {
   @joiValidation(loginSchema)
@@ -35,6 +39,19 @@ export class LogIn {
       },
       config.JWT_TOKEN_SECRET!
     );
+
+    const templateParams: IResetPasswordParams = {
+      username: existingUser.username,
+      email: existingUser.email,
+      ipaddress: publicIp.address(),
+      date: moment().format('DD/MM/YYY')
+    };
+    const template: string = resetPasswordTemplate.passwordResetConfirmationTemplate(templateParams);
+    emailQueue.addEmailJob('forgotPasswordEmail', {
+      template,
+      receiverEmail: 'petersolo2@gmail.com',
+      subject: 'Testing Password Reset Confirmation'
+    });
 
     req.session = { jwt: userJwt };
     const userDocument: IUserDocument = {
