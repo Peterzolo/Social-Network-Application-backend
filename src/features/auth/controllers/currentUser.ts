@@ -20,6 +20,6 @@ export class CurrentUser {
       token = req.session?.jwt;
       user = existingUser;
     }
-    res.status(HTTP_STATUS.OK).json({ token, isUser, user });
+    res.status(HTTP_STATUS.OK).json({ accessToken: token, loggedIn: isUser, CurrentUser: user });
   }
 }
