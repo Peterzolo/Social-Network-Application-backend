@@ -24,9 +24,7 @@ export class Password {
     }
 
     const randomBytes: Buffer = await Promise.resolve(crypto.randomBytes(20));
-    console.log('RANDOM BYTES', randomBytes);
     const randomCharacters: string = randomBytes.toString('hex');
-    console.log('RANDOM BYTES TO STRING', randomCharacters);
     await authService.updatePasswordToken(`${existingUser._id!}`, randomCharacters, Date.now() * 60 * 60 * 1000);
 
     const resetLink = `${config.CLIENT_URL}/reset-password?token=${randomCharacters}`;
