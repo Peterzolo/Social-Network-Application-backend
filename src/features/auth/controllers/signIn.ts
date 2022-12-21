@@ -35,7 +35,7 @@ export class LogIn {
       },
       config.JWT_TOKEN_SECRET!
     );
-    await mailTransport.sendEmail('vesta21@ethereal.email', 'Testing Development Email', 'New transactional details');
+
     req.session = { jwt: userJwt };
     const userDocument: IUserDocument = {
       ...user,
