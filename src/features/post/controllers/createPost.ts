@@ -1,18 +1,18 @@
-import { joiValidation } from '@global/decorators/joi-validation.decorators';
-import { postSchema, postWithImageSchema, postWithVideoSchema } from '@post/schemes/post.schemes';
+import { joiValidation } from '@global/typscript-decorator/joi-validation-decorator';
+import { postSchema, postWithImageSchema, postWithVideoSchema } from '@post/schemes/post.validateSchema';
 import { Request, Response } from 'express';
 import { ObjectId } from 'mongodb';
 import HTTP_STATUS from 'http-status-codes';
-import { IPostDocument } from '@post/interfaces/post.interface';
-import { PostCache } from '@service/redis/post.cache';
-import { socketIOPostObject } from '@socket/post';
-import { postQueue } from '@service/queues/post.queue';
+import { IPostDocument } from '@post/interfaces/postInterface';
+// import { PostCache } from '@service/redis/post.cache';
+import { socketIOPostObject } from '@socket/postSocket';
+// import { postQueue } from '@service/queues/post.queue';
 import { UploadApiResponse } from 'cloudinary';
-import { uploads, videoUpload } from '@global/helpers/cloudinary-upload';
-import { BadRequestError } from '@global/helpers/error-handler';
-import { imageQueue } from '@service/queues/image.queue';
+// import { uploads, videoUpload } from '@global/helpers/cloudinary-upload';
+import { BadRequestError } from '@global/helpers/customErrorHandler';
+// import { imageQueue } from '@service/queues/image.queue';
 
-const postCache: PostCache = new PostCache();
+// const postCache: PostCache = new PostCache();
 
 export class Create {
   @joiValidation(postSchema)
