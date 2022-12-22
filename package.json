@@ -12,7 +12,8 @@
     "lint:fix": "eslint 'src/**/*.ts' --fix",
     "prettier:check": "prettier --check 'src/**/*.{ts,json}'",
     "prettier:fix": "prettier --write 'src/**/*.{ts,json}'",
-    "build": "ttsc -p ."
+    "build": "ttsc -p .",
+    "test": "jest --coverage=true -w=1 --forceExit --detectOpenHandles --watchAll=false"
   },
   "dependencies": {
     "@bull-board/express": "^4.9.0",
