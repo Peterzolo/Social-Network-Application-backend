@@ -2,6 +2,15 @@
 import { ObjectId } from 'mongodb';
 import mongoose, { Document } from 'mongoose';
 
+export interface IReactions {
+  like: number;
+  love: number;
+  happy: number;
+  wow: number;
+  sad: number;
+  angry: number;
+}
+
 export interface IPostDocument extends Document {
   _id?: string | mongoose.Types.ObjectId;
   userId: string;
@@ -19,7 +28,7 @@ export interface IPostDocument extends Document {
   feelings?: string;
   gifUrl?: string;
   privacy?: string;
-  reactions?: IReactions;
+  // reactions?: IReactions;
   createdAt?: Date;
 }
 
