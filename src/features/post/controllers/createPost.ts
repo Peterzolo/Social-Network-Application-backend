@@ -6,7 +6,7 @@ import HTTP_STATUS from 'http-status-codes';
 import { IPostDocument } from '@post/interfaces/postInterface';
 import { PostCache } from '@service/redis/postCache';
 import { socketIOPostObject } from '@socket/postSocket';
-// import { postQueue } from '@service/queues/post.queue';
+import { postQueue } from '@service/queues/postQueue';
 import { UploadApiResponse } from 'cloudinary';
 // import { uploads, videoUpload } from '@global/helpers/cloudinary-upload';
 import { BadRequestError } from '@global/helpers/customErrorHandler';
@@ -46,7 +46,7 @@ export class CreatePost {
       uId: `${req.currentUser!.uId}`,
       createdPost
     });
-    // postQueue.addPostJob('addPostToDB', { key: req.currentUser!.userId, value: createdPost });
+    postQueue.addPostJob('addPostToDB', { key: req.currentUser!.userId, value: createdPost });
     res.status(HTTP_STATUS.CREATED).json({ message: 'Post created successfully' });
   }
 
