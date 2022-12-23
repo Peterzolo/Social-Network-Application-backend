@@ -2,10 +2,10 @@ import { BaseCache } from '@service/redis/Base-cache';
 import Logger from 'bunyan';
 import { config } from '@root/configuration';
 import { ServerError } from '@global/helpers/customErrorHandler';
-import { ISavePostToCache, IPostDocument } from '@post/interfaces/postInterface';
+import { ISavePostToCache } from '@post/interfaces/postInterface';
 import { Helpers } from '@global/helpers';
 // import { RedisCommandRawReply } from '@redis/client/dist/lib/commands';
-// import { IReactions } from '@reaction/interfaces/reaction.interface';
+
 import { IReactions } from '@post/interfaces/postInterface';
 
 const log: Logger = config.createLogger('postCache');
@@ -40,49 +40,6 @@ export class PostCache extends BaseCache {
       createdAt
     } = createdPost;
 
-    const firstList: string[] = [
-      '_id',
-      `${_id}`,
-      'userId',
-      `${userId}`,
-      'username',
-      `${username}`,
-      'email',
-      `${email}`,
-      'avatarColor',
-      `${avatarColor}`,
-      'profilePicture',
-      `${profilePicture}`,
-      'post',
-      `${post}`,
-      'bgColor',
-      `${bgColor}`,
-      'feelings',
-      `${feelings}`,
-      'privacy',
-      `${privacy}`,
-      'gifUrl',
-      `${gifUrl}`
-    ];
-
-    const secondList: string[] = [
-      'commentsCount',
-      `${commentsCount}`,
-      'reactions',
-      // JSON.stringify(reactions),
-      'imgVersion',
-      `${imgVersion}`,
-      'imgId',
-      `${imgId}`,
-      'videoId',
-      `${videoId}`,
-      'videoVersion',
-      `${videoVersion}`,
-      'createdAt',
-      `${createdAt}`
-    ];
-    const dataToSave: string[] = [...firstList, ...secondList];
-
     try {
       if (!this.client.isOpen) {
         await this.client.connect();
@@ -91,7 +48,24 @@ export class PostCache extends BaseCache {
       const postCount: string[] = await this.client.HMGET(`users:${currentUserId}`, 'postsCount');
       const multi: ReturnType<typeof this.client.multi> = this.client.multi();
       await this.client.ZADD('post', { score: parseInt(uId, 10), value: `${key}` });
-      multi.HSET(`posts:${key}`, dataToSave);
+      multi.HSET(`posts:${key}`, 'userId', `${userId}`);
+      multi.HSET(`posts:${key}`, '_id', `${_id}`);
+      multi.HSET(`posts:${key}`, 'username', `${username}`);
+      multi.HSET(`posts:${key}`, 'email', `${email}`);
+      multi.HSET(`posts:${key}`, 'avatarColor', `${avatarColor}`);
+      multi.HSET(`posts:${key}`, 'profilePicture', `${profilePicture}`);
+      multi.HSET(`posts:${key}`, 'post', `${post}`);
+      multi.HSET(`posts:${key}`, 'bgColor', `${bgColor}`);
+      multi.HSET(`posts:${key}`, 'feelings', `${feelings}`);
+      multi.HSET(`posts:${key}`, 'privacy', `${privacy}`);
+      multi.HSET(`posts:${key}`, 'gifUrl', `${gifUrl}`);
+      multi.HSET(`posts:${key}`, 'commentsCount', `${commentsCount}`);
+      // multi.HSET(`posts:${key}`, 'reactions', JSON.stringify(reactions));
+      multi.HSET(`posts:${key}`, 'imgVersion', `${imgVersion}`);
+      multi.HSET(`posts:${key}`, 'imgId', `${imgId}`);
+      multi.HSET(`posts:${key}`, 'videoId', `${videoId}`);
+      multi.HSET(`posts:${key}`, 'videoVersion', `${videoVersion}`);
+      multi.HSET(`posts:${key}`, 'createdAt', `${createdAt}`);
       const count: number = parseInt(postCount[0], 10) + 1;
       multi.HSET(`users:${currentUserId}`, ['postsCount', count]);
       multi.exec();

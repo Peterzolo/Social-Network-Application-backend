@@ -13,9 +13,6 @@ const log: Logger = config.createLogger('userCache');
 // type UserCacheMultiType = string | number | Buffer | RedisCommandRawReply[] | IUserDocument | IUserDocument[];
 
 export class UserCache extends BaseCache {
-  static getUserFromCache(arg0: string): IUserDocument | PromiseLike<IUserDocument> {
-    throw new Error('Method not implemented.');
-  }
   constructor() {
     super('userCache');
   }
@@ -44,61 +41,31 @@ export class UserCache extends BaseCache {
       social
     } = createdUser;
 
-    const firstList: string[] = [
-      '_id',
-      `${_id}`,
-      'uId',
-      `${uId}`,
-      'username',
-      `${username}`,
-      'email',
-      `${email}`,
-      'avatarColor',
-      `${avatarColor}`,
-      'createdAt',
-      `${createdAt}`,
-      'postsCount',
-      `${postsCount}`
-    ];
-    const secondList: string[] = [
-      'blocked',
-      JSON.stringify(blocked),
-      'blockedBy',
-      JSON.stringify(blockedBy),
-      'profilePicture',
-      `${profilePicture}`,
-      'followersCount',
-      `${followersCount}`,
-      'followingCount',
-      `${followingCount}`,
-      'notifications',
-      JSON.stringify(notifications),
-      'social',
-      JSON.stringify(social)
-    ];
-    const thirdList: string[] = [
-      'work',
-      `${work}`,
-      'location',
-      `${location}`,
-      'school',
-      `${school}`,
-      'quote',
-      `${quote}`,
-      'bgImageVersion',
-      `${bgImageVersion}`,
-      'bgImageId',
-      `${bgImageId}`
-    ];
-    const dataToSave: string[] = [...firstList, ...secondList, ...thirdList];
-
     try {
       if (!this.client.isOpen) {
         await this.client.connect();
       }
       await this.client.ZADD('user', { score: parseInt(userUId, 10), value: `${key}` });
-      await this.client.HSET(`users: ${key}`, { value: `${dataToSave}` });
-      // await this.client.HSET(`users:${key}`, dataToSave);
+      await this.client.HSET(`users: ${key}`, '_id', `${_id}`);
+      await this.client.HSET(`users: ${key}`, 'uId', `${uId}`);
+      await this.client.HSET(`users: ${key}`, 'username', `${username}`);
+      await this.client.HSET(`users: ${key}`, 'email', `${email}`);
+      await this.client.HSET(`users: ${key}`, 'blocked', JSON.stringify(blocked));
+      await this.client.HSET(`users: ${key}`, 'blockedBy', JSON.stringify(blockedBy));
+      await this.client.HSET(`users: ${key}`, 'profilePicture', `${profilePicture}`);
+      await this.client.HSET(`users: ${key}`, 'followersCount', `${followersCount}`);
+      await this.client.HSET(`users: ${key}`, 'followingCount', `${followingCount}`);
+      await this.client.HSET(`users: ${key}`, 'postsCount', `${postsCount}`);
+      await this.client.HSET(`users: ${key}`, 'createdAt', `${createdAt}`);
+      await this.client.HSET(`users: ${key}`, 'avatarColor', `${avatarColor}`);
+      await this.client.HSET(`users: ${key}`, 'notifications', JSON.stringify(notifications));
+      await this.client.HSET(`users: ${key}`, 'social', JSON.stringify(social));
+      await this.client.HSET(`users: ${key}`, 'work', `${work}`);
+      await this.client.HSET(`users: ${key}`, 'location', `${location}`);
+      await this.client.HSET(`users: ${key}`, 'school', `${school}`);
+      await this.client.HSET(`users: ${key}`, 'bgImageId', `${bgImageId}`);
+      await this.client.HSET(`users: ${key}`, 'bgImageVersion', `${bgImageVersion}`);
+      await this.client.HSET(`users: ${key}`, 'quote', `${quote}`);
     } catch (error) {
       log.error(error);
       console.log(error);
