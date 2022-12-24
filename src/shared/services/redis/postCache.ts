@@ -115,33 +115,33 @@ export class PostCache extends BaseCache {
     }
   }
 
-  // public async getPostsWithImagesFromCache(key: string, start: number, end: number): Promise<IPostDocument[]> {
-  //   try {
-  //     if (!this.client.isOpen) {
-  //       await this.client.connect();
-  //     }
+  public async getPostsWithImagesFromCache(key: string, start: number, end: number): Promise<IPostDocument[]> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
 
-  //     const reply: string[] = await this.client.ZRANGE(key, start, end, { REV: true });
-  //     const multi: ReturnType<typeof this.client.multi> = this.client.multi();
-  //     for (const value of reply) {
-  //       multi.HGETALL(`posts:${value}`);
-  //     }
-  //     const replies: PostCacheMultiType = (await multi.exec()) as PostCacheMultiType;
-  //     const postWithImages: IPostDocument[] = [];
-  //     for (const post of replies as IPostDocument[]) {
-  //       if ((post.imgId && post.imgVersion) || post.gifUrl) {
-  //         post.commentsCount = Helpers.parseJson(`${post.commentsCount}`) as number;
-  //         post.reactions = Helpers.parseJson(`${post.reactions}`) as IReactions;
-  //         post.createdAt = new Date(Helpers.parseJson(`${post.createdAt}`)) as Date;
-  //         postWithImages.push(post);
-  //       }
-  //     }
-  //     return postWithImages;
-  //   } catch (error) {
-  //     log.error(error);
-  //     throw new ServerError('Server error. Try again.');
-  //   }
-  // }
+      const reply: string[] = await this.client.ZRANGE(key, start, end, { REV: true });
+      const multi: ReturnType<typeof this.client.multi> = this.client.multi();
+      for (const value of reply) {
+        multi.HGETALL(`posts:${value}`);
+      }
+      const replies: PostCacheMultiType = (await multi.exec()) as PostCacheMultiType;
+      const postWithImages: IPostDocument[] = [];
+      for (const post of replies as IPostDocument[]) {
+        if ((post.imgId && post.imgVersion) || post.gifUrl) {
+          post.commentsCount = Helpers.parseJson(`${post.commentsCount}`) as number;
+          post.reactions = Helpers.parseJson(`${post.reactions}`) as IReactions;
+          post.createdAt = new Date(Helpers.parseJson(`${post.createdAt}`)) as Date;
+          postWithImages.push(post);
+        }
+      }
+      return postWithImages;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
 
   // public async getPostsWithVideosFromCache(key: string, start: number, end: number): Promise<IPostDocument[]> {
   //   try {
