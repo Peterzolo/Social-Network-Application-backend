@@ -87,7 +87,7 @@ export class CreatePost {
       uId: `${req.currentUser!.uId}`,
       createdPost
     });
-    // postQueue.addPostJob('addPostToDB', { key: req.currentUser!.userId, value: createdPost });
+    postQueue.addPostJob('addPostToDB', { key: req.currentUser!.userId, value: createdPost });
     // imageQueue.addImageJob('addImageToDB', {
     //   key: `${req.currentUser!.userId}`,
     //   imgId: result.public_id,
