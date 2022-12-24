@@ -24,10 +24,10 @@ class PostService {
     return posts;
   }
 
-  // public async postsCount(): Promise<number> {
-  //   const count: number = await PostModel.find({}).countDocuments();
-  //   return count;
-  // }
+  public async postsCount(): Promise<number> {
+    const count: number = await PostModel.find({}).countDocuments();
+    return count;
+  }
 
   // public async deletePost(postId: string, userId: string): Promise<void> {
   //   const deletePost: Query<IQueryComplete & IQueryDeleted, IPostDocument> = PostModel.deleteOne({ _id: postId });
