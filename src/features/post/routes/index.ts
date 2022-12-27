@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import { authMiddleware } from '@global/helpers/authMiddleware';
 import { CreatePost } from '@post/controllers/createPost';
+import { Fetch } from '@post/controllers/getPosts';
 // import { Get } from '@post/controllers/get-posts';
 // import { Delete } from '@post/controllers/delete-post';
 // import { Update } from '@post/controllers/update-post';
@@ -15,8 +16,8 @@ class PostRoutes {
   public routes(): Router {
     this.router.post('/create-post', authMiddleware.checkAuthentication, CreatePost.prototype.create);
     this.router.post('/create-post-image', authMiddleware.checkAuthentication, CreatePost.prototype.postWithImage);
-    // this.router.get('/post/all/:page', authMiddleware.checkAuthentication, Get.prototype.posts);
-    // this.router.get('/post/images/:page', authMiddleware.checkAuthentication, Get.prototype.postsWithImages);
+    this.router.get('/post/all/:page', authMiddleware.checkAuthentication, Fetch.prototype.posts);
+    this.router.get('/post/images/:page', authMiddleware.checkAuthentication, Fetch.prototype.postsWithImages);
     // this.router.get('/post/videos/:page', authMiddleware.checkAuthentication, Get.prototype.postsWithVideos);
 
     // this.router.post('/post/video/post', authMiddleware.checkAuthentication, Create.prototype.postWithVideo);
