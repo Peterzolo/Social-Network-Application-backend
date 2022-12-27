@@ -29,17 +29,17 @@ class PostService {
     return count;
   }
 
-  // public async deletePost(postId: string, userId: string): Promise<void> {
-  //   const deletePost: Query<IQueryComplete & IQueryDeleted, IPostDocument> = PostModel.deleteOne({ _id: postId });
-  //   // delete reactions here
-  //   const decrementPostCount: UpdateQuery<IUserDocument> = UserModel.updateOne({ _id: userId }, { $inc: { postsCount: -1 } });
-  //   await Promise.all([deletePost, decrementPostCount]);
-  // }
+  public async deletePost(postId: string, userId: string): Promise<void> {
+    const deletePost: Query<IQueryComplete & IQueryDeleted, IPostDocument> = PostModel.deleteOne({ _id: postId });
+    // delete reactions here
+    const decrementPostCount: UpdateQuery<IUserDocument> = UserModel.updateOne({ _id: userId }, { $inc: { postsCount: -1 } });
+    await Promise.all([deletePost, decrementPostCount]);
+  }
 
-  // public async editPost(postId: string, updatedPost: IPostDocument): Promise<void> {
-  //   const updatePost: UpdateQuery<IPostDocument> = PostModel.updateOne({ _id: postId }, { $set: updatedPost });
-  //   await Promise.all([updatePost]);
-  // }
+  public async editPost(postId: string, updatedPost: IPostDocument): Promise<void> {
+    const updatePost: UpdateQuery<IPostDocument> = PostModel.updateOne({ _id: postId }, { $set: updatedPost });
+    await Promise.all([updatePost]);
+  }
 }
 
 export const postService: PostService = new PostService();
