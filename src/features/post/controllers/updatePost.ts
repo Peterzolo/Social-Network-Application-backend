@@ -111,13 +111,13 @@ export class UpdatePost {
     const postUpdated: IPostDocument = await postCache.updatePostInCache(postId, updatedPost);
     socketIOPostObject.emit('update post', postUpdated, 'posts');
     postQueue.addPostJob('updatePostInDB', { key: postId, value: postUpdated });
-    if (image) {
-      imageQueue.addImageJob('addImageToDB', {
-        key: `${req.currentUser!.userId}`,
-        imgId: result.public_id,
-        imgVersion: result.version.toString()
-      });
-    }
+    // if (image) {
+    //   imageQueue.addImageJob('addImageToDB', {
+    //     key: `${req.currentUser!.userId}`,
+    //     imgId: result.public_id,
+    //     imgVersion: result.version.toString()
+    //   });
+    // }
     return result;
   }
 }
