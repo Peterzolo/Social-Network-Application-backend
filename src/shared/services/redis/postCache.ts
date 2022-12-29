@@ -6,7 +6,7 @@ import { IPostDocument, ISavePostToCache } from '@post/interfaces/postInterface'
 import { Helpers } from '@global/helpers';
 import { RedisCommandRawReply } from '@redis/client/dist/lib/commands';
 
-import { IReactions } from '@post/interfaces/postInterface';
+import { IReactions } from '@reaction/interefaces/reactionInterface';
 
 const log: Logger = config.createLogger('postCache');
 
