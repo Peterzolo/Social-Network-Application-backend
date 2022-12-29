@@ -22,11 +22,11 @@ class PostRoutes {
     this.router.get('/post/images/:page', authMiddleware.checkAuthentication, Fetch.prototype.postsWithImages);
     this.router.delete('/delete-post/:postId', authMiddleware.checkAuthentication, DeletePost.prototype.delete);
     this.router.put('/update-post/:postId', authMiddleware.checkAuthentication, UpdatePost.prototype.post);
+    this.router.put('/update-post/image/:postId', authMiddleware.checkAuthentication, UpdatePost.prototype.postWithImage);
     // this.router.get('/post/videos/:page', authMiddleware.checkAuthentication, Get.prototype.postsWithVideos);
 
     // this.router.post('/post/video/post', authMiddleware.checkAuthentication, Create.prototype.postWithVideo);
 
-    // this.router.put('/post/image/:postId', authMiddleware.checkAuthentication, Update.prototype.postWithImage);
     // this.router.put('/post/video/:postId', authMiddleware.checkAuthentication, Update.prototype.postWithVideo);
 
     return this.router;
