@@ -2,6 +2,7 @@ import { authRoutes } from '@auth/routes';
 import { currentUserRoutes } from '@auth/routes/currentUserRoute';
 import { authMiddleware } from '@global/helpers/authMiddleware';
 import { postRoutes } from '@post/routes';
+import { reactionRoutes } from '@reaction/routes';
 import { serverAdapter } from '@service/queues/BaseQueue';
 import { Application } from 'express';
 
@@ -13,6 +14,7 @@ export const routeWrapper = (app: Application) => {
     app.use(BASE_PATH, authRoutes.signoutRoute());
     app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, postRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, reactionRoutes.routes());
   };
   routes();
 };

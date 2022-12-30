@@ -5,7 +5,6 @@ import { ServerError } from '@global/helpers/customErrorHandler';
 import { IPostDocument, ISavePostToCache } from '@post/interfaces/postInterface';
 import { Helpers } from '@global/helpers';
 import { RedisCommandRawReply } from '@redis/client/dist/lib/commands';
-
 import { IReactions } from '@reaction/interefaces/reactionInterface';
 
 const log: Logger = config.createLogger('postCache');
@@ -36,7 +35,7 @@ export class PostCache extends BaseCache {
       imgId,
       videoId,
       videoVersion,
-      // reactions: IReactions,
+      reactions,
       createdAt
     } = createdPost;
 
@@ -60,7 +59,7 @@ export class PostCache extends BaseCache {
       multi.HSET(`posts:${key}`, 'privacy', `${privacy}`);
       multi.HSET(`posts:${key}`, 'gifUrl', `${gifUrl}`);
       multi.HSET(`posts:${key}`, 'commentsCount', `${commentsCount}`);
-      // multi.HSET(`posts:${key}`, 'reactions', JSON.stringify(reactions));
+      multi.HSET(`posts:${key}`, 'reactions', JSON.stringify(reactions));
       multi.HSET(`posts:${key}`, 'imgVersion', `${imgVersion}`);
       multi.HSET(`posts:${key}`, 'imgId', `${imgId}`);
       multi.HSET(`posts:${key}`, 'videoId', `${videoId}`);
