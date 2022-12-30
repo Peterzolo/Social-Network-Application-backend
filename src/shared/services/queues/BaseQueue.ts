@@ -7,6 +7,7 @@ import { config } from '@root/configuration';
 import { IAuthJob } from '@auth/interfaces/auth-interface';
 import { IEmailJob } from '@user/interfaces/user.interface';
 import { IPostJobData } from '@post/interfaces/postInterface';
+import { IReactionJob } from '@reaction/interefaces/reactionInterface';
 // import { IReactionJob } from '@reaction/interfaces/reaction.interface';
 // import { ICommentJob } from '@comment/interfaces/comment.interface';
 // import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/follower.interface';
@@ -14,8 +15,7 @@ import { IPostJobData } from '@post/interfaces/postInterface';
 // import { IFileImageJobData } from '@image/interfaces/image.interface';
 // import { IChatJobData, IMessageData } from '@chat/interfaces/chat.interface';
 
-type IBaseJobData = IAuthJob | IEmailJob | IPostJobData;
-// | IReactionJob
+type IBaseJobData = IAuthJob | IEmailJob | IPostJobData | IReactionJob;
 // | ICommentJob
 // | IFollowerJobData
 // | IBlockedUserJobData

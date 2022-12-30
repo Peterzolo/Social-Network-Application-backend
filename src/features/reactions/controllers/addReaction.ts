@@ -5,7 +5,7 @@ import { joiValidation } from '@global/typscript-decorator/joi-validation-decora
 import { addReactionSchema } from '@reaction/schemes/reaction.validateSchema';
 import { IReactionDocument, IReactionJob } from '@reaction/interefaces/reactionInterface';
 import { ReactionCache } from '@service/redis/reactionCache';
-// import { reactionQueue } from '@service/queues/reactionQ';
+import { reactionQueue } from '@service/queues/reactionQueue';
 
 const reactionCache: ReactionCache = new ReactionCache();
 
@@ -24,16 +24,16 @@ export class PostReaction {
 
     await reactionCache.savePostReactionToCache(postId, reactionObject, postReactions, type, previousReaction);
 
-    // const databaseReactionData: IReactionJob = {
-    //   postId,
-    //   userTo,
-    //   userFrom: req.currentUser!.userId,
-    //   username: req.currentUser!.username,
-    //   type,
-    //   previousReaction,
-    //   reactionObject
-    // };
-    // reactionQueue.addReactionJob('addReactionToDB', databaseReactionData);
+    const databaseReactionData: IReactionJob = {
+      postId,
+      userTo,
+      userFrom: req.currentUser!.userId,
+      username: req.currentUser!.username,
+      type,
+      previousReaction,
+      reactionObject
+    };
+    reactionQueue.addReactionJob('addReactionToDB', databaseReactionData);
     res.status(HTTP_STATUS.OK).json({ message: 'Reaction added successfully' });
   }
 }
