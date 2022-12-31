@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import { authMiddleware } from '@global/helpers/authMiddleware';
 import { PostReaction } from '@reaction/controllers/addReaction';
+import { Remove } from '@reaction/controllers/removeReaction';
 
 class ReactionRoutes {
   private router: Router;
@@ -11,6 +12,11 @@ class ReactionRoutes {
 
   public routes(): Router {
     this.router.post('/post/reaction/add', authMiddleware.checkAuthentication, PostReaction.prototype.add);
+    this.router.delete(
+      '/post/reaction-remove/:postId/:previousReaction/:postReactions',
+      authMiddleware.checkAuthentication,
+      Remove.prototype.reaction
+    );
     // this.router.get('/post/reactions/:postId', authMiddleware.checkAuthentication, Get.prototype.reactions);
     // this.router.get(
     //   '/post/single/reaction/username/:username/:postId',
@@ -18,12 +24,6 @@ class ReactionRoutes {
     //   Get.prototype.singleReactionByUsername
     // );
     // this.router.get('/post/reactions/username/:username', authMiddleware.checkAuthentication, Get.prototype.reactionsByUsername);
-
-    // this.router.delete(
-    //   '/post/reaction/:postId/:previousReaction/:postReactions',
-    //   authMiddleware.checkAuthentication,
-    //   Remove.prototype.reaction
-    // );
 
     return this.router;
   }
