@@ -5,6 +5,7 @@ import { ServerError } from '@global/helpers/customErrorHandler';
 import { IPostDocument, ISavePostToCache } from '@post/interfaces/postInterface';
 import { Helpers } from '@global/helpers';
 import { RedisCommandRawReply } from '@redis/client/dist/lib/commands';
+
 import { IReactions } from '@reaction/interefaces/reactionInterface';
 
 const log: Logger = config.createLogger('postCache');
@@ -231,20 +232,30 @@ export class PostCache extends BaseCache {
 
   public async updatePostInCache(key: string, updatedPost: IPostDocument): Promise<IPostDocument> {
     const { post, bgColor, feelings, privacy, gifUrl, imgVersion, imgId, videoId, videoVersion, profilePicture } = updatedPost;
+    const firstList: string[] = [
+      'post',
+      `${post}`,
+      'bgColor',
+      `${bgColor}`,
+      'feelings',
+      `${feelings}`,
+      'privacy',
+      `${privacy}`,
+      'gifUrl',
+      `${gifUrl}`,
+      'videoId',
+      `${videoId}`,
+      'videoVersion',
+      `${videoVersion}`
+    ];
+    const secondList: string[] = ['profilePicture', `${profilePicture}`, 'imgVersion', `${imgVersion}`, 'imgId', `${imgId}`];
+    const dataToSave: string[] = [...firstList, ...secondList];
+
     try {
       if (!this.client.isOpen) {
         await this.client.connect();
       }
-      await this.client.HSET(`posts:${key}`, 'post', `${post}`);
-      await this.client.HSET(`posts:${key}`, 'bgColor', `${bgColor}`);
-      await this.client.HSET(`posts:${key}`, 'feelings', `${feelings}`);
-      await this.client.HSET(`posts:${key}`, 'privacy', `${privacy}`);
-      await this.client.HSET(`posts:${key}`, 'gifUrl', `${gifUrl}`);
-      await this.client.HSET(`posts:${key}`, 'videoId', `${videoId}`);
-      await this.client.HSET(`posts:${key}`, 'videoVersion', `${videoVersion}`);
-      await this.client.HSET(`posts:${key}`, 'profilePicture', `${profilePicture}`);
-      await this.client.HSET(`posts:${key}`, 'imgVersion', `${imgVersion}`);
-      await this.client.HSET(`posts:${key}`, 'imgId', `${imgId}`);
+      await this.client.HSET(`posts:${key}`, dataToSave);
       const multi: ReturnType<typeof this.client.multi> = this.client.multi();
       multi.HGETALL(`posts:${key}`);
       const reply: PostCacheMultiType = (await multi.exec()) as PostCacheMultiType;
