@@ -1,6 +1,7 @@
 import { authRoutes } from '@auth/routes';
 import { currentUserRoutes } from '@auth/routes/currentUserRoute';
 import { commentRoutes } from '@comment/routes/commentRoutes';
+import { followerRoutes } from '@follower/routes/followerRoutes';
 import { authMiddleware } from '@global/helpers/authMiddleware';
 import { postRoutes } from '@post/routes';
 import { reactionRoutes } from '@reaction/routes';
@@ -17,6 +18,7 @@ export const routeWrapper = (app: Application) => {
     app.use(BASE_PATH, authMiddleware.verifyUser, postRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, reactionRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, commentRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, followerRoutes.routes());
   };
   routes();
 };
