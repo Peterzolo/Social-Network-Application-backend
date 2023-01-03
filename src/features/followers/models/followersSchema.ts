@@ -1,4 +1,4 @@
-import { IFollowerDocument } from '@follower/interfaces/follower.interface';
+import { IFollowerDocument } from '@follower/interfaces/followersInterface.ts';
 import mongoose, { model, Model, Schema } from 'mongoose';
 
 const followerSchema: Schema = new Schema({
