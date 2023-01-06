@@ -9,7 +9,7 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 // import { NotificationModel } from '@notification/models/notification.schema';
 // import { socketIONotificationObject } from '@socket/notification';
 // import { notificationTemplate } from '@service/emails/templates/notifications/notification-template';
-import { emailQueue } from '@service/queues/emailQueues';
+// import { emailQueue } from '@service/queues/emailQueues';
 import { UserCache } from '@service/redis/userCache';
 import { map } from 'lodash';
 
