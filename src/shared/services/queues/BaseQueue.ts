@@ -14,8 +14,7 @@ import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/foll
 // import { IFileImageJobData } from '@image/interfaces/image.interface';
 // import { IChatJobData, IMessageData } from '@chat/interfaces/chat.interface';
 
-type IBaseJobData = IAuthJob | IEmailJob | IPostJobData | IReactionJob | ICommentJob | IFollowerJobData;
-// | IBlockedUserJobData
+type IBaseJobData = IAuthJob | IEmailJob | IPostJobData | IReactionJob | ICommentJob | IFollowerJobData | IBlockedUserJobData;
 // | INotificationJobData
 // | IFileImageJobData
 // | IChatJobData
