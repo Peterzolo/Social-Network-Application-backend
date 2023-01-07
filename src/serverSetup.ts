@@ -16,6 +16,7 @@ import Logger from 'bunyan';
 import { CustomError, IErrorResponse } from '@global/helpers/customErrorHandler';
 import { SocketIOPostHandler } from '@socket/postSocket';
 import { SocketIOFollowerHandler } from '@socket/followerSocket';
+import { SocketIOUserHandler } from '@socket/userSocket';
 
 const PORT = process.env.PORT || 5000;
 const log: Logger = config.createLogger('server-setup');
@@ -117,14 +118,14 @@ export class PeepsArena {
   private socketIOConnections(io: Server): void {
     const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
     const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
-    // const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
     // const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
     // const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     // const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
 
     postSocketHandler.listen();
     followerSocketHandler.listen();
-    // userSocketHandler.listen();
+    userSocketHandler.listen();
     // chatSocketHandler.listen();
     // notificationSocketHandler.listen(io);
     // imageSocketHandler.listen(io);
