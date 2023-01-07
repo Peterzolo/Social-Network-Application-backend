@@ -3,6 +3,7 @@ import { authMiddleware } from '@global/helpers/authMiddleware';
 import { AddFollower } from '@follower/controllers/addFollowerController';
 import { unfollow } from '@follower/controllers/unfollowUser';
 import { GetFollows } from '@follower/controllers/getFollowers';
+import { BlockedUser } from '@follower/controllers/blockedUser';
 
 // import { AddUser } from '@follower/controllers/block-user';
 
@@ -19,8 +20,8 @@ class FollowerRoutes {
     this.router.get('/user/following', authMiddleware.checkAuthentication, GetFollows.prototype.userFollowing);
     this.router.get('/user/followers/:userId', authMiddleware.checkAuthentication, GetFollows.prototype.userFollowers);
 
-    // this.router.put('/user/block/:followerId', authMiddleware.checkAuthentication, AddUser.prototype.block);
-    // this.router.put('/user/unblock/:followerId', authMiddleware.checkAuthentication, AddUser.prototype.unblock);
+    this.router.put('/user/block/:followerId', authMiddleware.checkAuthentication, BlockedUser.prototype.block);
+    this.router.put('/user/unblock/:followerId', authMiddleware.checkAuthentication, BlockedUser.prototype.unblock);
 
     return this.router;
   }
