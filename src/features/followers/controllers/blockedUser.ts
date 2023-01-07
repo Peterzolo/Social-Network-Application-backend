@@ -14,7 +14,7 @@ export class BlockedUser {
       keyTwo: `${followerId}`,
       type: 'block'
     });
-    res.status(HTTP_STATUS.OK).json({ message: 'User blocked successfully' });
+    res.status(HTTP_STATUS.OK).json({ message: 'User blocked' });
   }
 
   public async unblock(req: Request, res: Response): Promise<void> {
@@ -25,12 +25,13 @@ export class BlockedUser {
       keyTwo: `${followerId}`,
       type: 'unblock'
     });
-    res.status(HTTP_STATUS.OK).json({ message: 'User unblocked successfully' });
+    res.status(HTTP_STATUS.OK).json({ message: 'User unblocked' });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async updateBlockedUser(followerId: string, userId: string, type: 'block' | 'unblock'): Promise<void> {
-    const blocked: Promise<void> = followerCache.updateBlockedUserPropInCache(`${userId}`, 'blocked', `${followerId}`, type);
-    const blockedBy: Promise<void> = followerCache.updateBlockedUserPropInCache(`${followerId}`, 'blockedBy', `${userId}`, type);
-    await Promise.all([blocked, blockedBy]);
+    // const blocked: Promise<void> = followerCache.updateBlockedUserPropInCache(`${userId}`, 'blocked', `${followerId}`, type);
+    // const blockedBy: Promise<void> = followerCache.updateBlockedUserPropInCache(`${followerId}`, 'blockedBy', `${userId}`, type);
+    // await Promise.all([blocked, blockedBy]);
   }
 }
