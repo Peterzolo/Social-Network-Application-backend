@@ -34,3 +34,7 @@ export interface INotification {
   imgVersion: string;
   gifUrl: string;
 }
+
+export interface INotificationJobData {
+  key?: string;
+}
