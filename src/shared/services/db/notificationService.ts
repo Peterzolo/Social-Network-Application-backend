@@ -2,7 +2,6 @@ import { INotificationDocument } from '@notification/interfaces/notificationInte
 import { NotificationModel } from '@notification/models/notificationSchema';
 import mongoose from 'mongoose';
 
-
 class NotificationService {
   public async getNotifications(userId: string): Promise<INotificationDocument[]> {
     const notifications: INotificationDocument[] = await NotificationModel.aggregate([
@@ -11,7 +10,7 @@ class NotificationService {
       { $unwind: '$userFrom' },
       { $lookup: { from: 'Auth', localField: 'userFrom.authId', foreignField: '_id', as: 'authId' } },
       { $unwind: '$authId' },
-      // {
+      {
         $project: {
           _id: 1,
           message: 1,
