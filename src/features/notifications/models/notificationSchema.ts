@@ -33,8 +33,8 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     post,
     imgId,
     imgVersion,
-//     gifUrl
-//   } = body;
+    gifUrl
+  } = body;
 
 //   await NotificationModel.create({
 //     userTo,
