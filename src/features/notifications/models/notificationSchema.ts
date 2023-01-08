@@ -38,8 +38,8 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
 
   await NotificationModel.create({
     userTo,
-//     userFrom,
-//     message,
+    userFrom,
+    message,
 //     notificationType,
 //     entityId,
 //     createdItemId,
