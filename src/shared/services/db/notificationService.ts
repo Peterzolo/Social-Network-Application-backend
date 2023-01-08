@@ -13,9 +13,9 @@ class NotificationService {
       { $unwind: '$authId' },
       // {
         $project: {
-          // _id: 1,
-          // message: 1,
-          // comment: 1,
+          _id: 1,
+          message: 1,
+          comment: 1,
           // createdAt: 1,
           // createdItemId: 1,
           // entityId: 1,
