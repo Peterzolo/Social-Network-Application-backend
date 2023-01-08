@@ -56,8 +56,8 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     return notifications;
   } catch (error) {
     return error;
-//   }
-// };
+  }
+};
 
 // const NotificationModel: Model<INotificationDocument> = model<INotificationDocument>('Notification', notificationSchema, 'Notification');
 // export { NotificationModel };
