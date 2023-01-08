@@ -16,7 +16,7 @@ const notificationSchema: Schema = new Schema({
   imgId: { type: String, default: '' },
   imgVersion: { type: String, default: '' },
   gifUrl: { type: String, default: '' },
-  // createdAt: { type: Date, default: Date.now() }
+  createdAt: { type: Date, default: Date.now() }
 });
 
 // notificationSchema.methods.insertNotification = async function (body: INotification) {
