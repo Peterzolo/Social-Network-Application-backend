@@ -30,13 +30,13 @@ class NotificationService {
           userFrom: {
             profilePicture: '$userFrom.profilePicture',
             username: '$authId.username',
-          //   avatarColor: '$authId.avatarColor',
-          //   uId: '$authId.uId'
+            avatarColor: '$authId.avatarColor',
+            uId: '$authId.uId'
           }
         }
       }
     ]);
-    // return notifications;
+    return notifications;
   }
 
   // public async updateNotification(notificationId: string): Promise<void> {
