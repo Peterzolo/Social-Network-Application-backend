@@ -23,8 +23,8 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
   const {
     userTo,
     userFrom,
-//     message,
-//     notificationType,
+    message,
+    notificationType,
 //     entityId,
 //     createdItemId,
 //     createdAt,
