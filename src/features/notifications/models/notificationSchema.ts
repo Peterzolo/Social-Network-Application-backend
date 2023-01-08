@@ -48,9 +48,9 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     reaction,
     post,
     imgId,
-//     imgVersion,
-//     gifUrl
-//   });
+    imgVersion,
+    gifUrl
+  });
 //   try {
 //     const notifications: INotificationDocument[] = await notificationService.getNotifications(userTo);
 //     return notifications;
