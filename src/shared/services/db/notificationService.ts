@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 class NotificationService {
   public async getNotifications(userId: string): Promise<INotificationDocument[]> {
     const notifications: INotificationDocument[] = await NotificationModel.aggregate([
+      // Display all notifications from notification collection by a user with this userId
       { $match: { userTo: new mongoose.Types.ObjectId(userId) } },
       { $lookup: { from: 'User', localField: 'userFrom', foreignField: '_id', as: 'userFrom' } },
       { $unwind: '$userFrom' },
