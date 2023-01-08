@@ -7,7 +7,7 @@ const notificationSchema: Schema = new Schema({
   userFrom: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   read: { type: Boolean, default: false },
   message: { type: String, default: '' },
-  // notificationType: String,
+  notificationType: String,
   // entityId: mongoose.Types.ObjectId,
   // createdItemId: mongoose.Types.ObjectId,
   // comment: { type: String, default: '' },
