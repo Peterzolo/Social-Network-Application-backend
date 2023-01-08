@@ -10,7 +10,7 @@ class NotificationService {
       { $lookup: { from: 'User', localField: 'userFrom', foreignField: '_id', as: 'userFrom' } },
       { $unwind: '$userFrom' },
       { $lookup: { from: 'Auth', localField: 'userFrom.authId', foreignField: '_id', as: 'authId' } },
-      // { $unwind: '$authId' },
+      { $unwind: '$authId' },
       // {
         $project: {
           // _id: 1,
