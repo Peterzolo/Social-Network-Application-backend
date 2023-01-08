@@ -21,8 +21,8 @@ const notificationSchema: Schema = new Schema({
 
 notificationSchema.methods.insertNotification = async function (body: INotification) {
   const {
-//     userTo,
-//     userFrom,
+    userTo,
+    userFrom,
 //     message,
 //     notificationType,
 //     entityId,
