@@ -36,8 +36,8 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     gifUrl
   } = body;
 
-//   await NotificationModel.create({
-//     userTo,
+  await NotificationModel.create({
+    userTo,
 //     userFrom,
 //     message,
 //     notificationType,
