@@ -18,3 +18,19 @@ export interface INotificationDocument extends Document {
   createdAt?: Date;
   insertNotification(data: INotification): Promise<void>;
 }
+
+export interface INotification {
+  userTo: string;
+  userFrom: string;
+  message: string;
+  notificationType: string;
+  entityId: mongoose.Types.ObjectId;
+  createdItemId: mongoose.Types.ObjectId;
+  createdAt: Date;
+  comment: string;
+  reaction: string;
+  post: string;
+  imgId: string;
+  imgVersion: string;
+  gifUrl: string;
+}
