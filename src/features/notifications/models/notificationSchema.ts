@@ -53,9 +53,9 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
   });
   try {
     const notifications: INotificationDocument[] = await notificationService.getNotifications(userTo);
-//     return notifications;
-//   } catch (error) {
-//     return error;
+    return notifications;
+  } catch (error) {
+    return error;
 //   }
 // };
 
