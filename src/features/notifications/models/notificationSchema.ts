@@ -12,7 +12,7 @@ const notificationSchema: Schema = new Schema({
   createdItemId: mongoose.Types.ObjectId,
   comment: { type: String, default: '' },
   reaction: { type: String, default: '' },
-  // post: { type: String, default: '' },
+  post: { type: String, default: '' },
   // imgId: { type: String, default: '' },
   // imgVersion: { type: String, default: '' },
   // gifUrl: { type: String, default: '' },
