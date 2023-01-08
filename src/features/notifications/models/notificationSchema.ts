@@ -46,8 +46,8 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     createdAt,
     comment,
     reaction,
-//     post,
-//     imgId,
+    post,
+    imgId,
 //     imgVersion,
 //     gifUrl
 //   });
