@@ -20,7 +20,7 @@ const notificationSchema: Schema = new Schema({
 });
 
 notificationSchema.methods.insertNotification = async function (body: INotification) {
-//   const {
+  const {
 //     userTo,
 //     userFrom,
 //     message,
