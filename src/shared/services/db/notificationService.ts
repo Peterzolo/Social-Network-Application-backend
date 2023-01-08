@@ -22,9 +22,9 @@ class NotificationService {
           notificationType: 1,
           gifUrl: 1,
           imgId: 1,
-          // imgVersion: 1,
-          // post: 1,
-          // reaction: 1,
+          imgVersion: 1,
+          post: 1,
+          reaction: 1,
           // read: 1,
           // userTo: 1,
           // userFrom: {
