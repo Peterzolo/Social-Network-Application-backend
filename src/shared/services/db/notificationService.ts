@@ -27,9 +27,9 @@ class NotificationService {
           reaction: 1,
           read: 1,
           userTo: 1,
-          // userFrom: {
-          //   profilePicture: '$userFrom.profilePicture',
-          //   username: '$authId.username',
+          userFrom: {
+            profilePicture: '$userFrom.profilePicture',
+            username: '$authId.username',
           //   avatarColor: '$authId.avatarColor',
           //   uId: '$authId.uId'
           }
