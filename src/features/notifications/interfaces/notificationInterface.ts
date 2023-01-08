@@ -38,3 +38,9 @@ export interface INotification {
 export interface INotificationJobData {
   key?: string;
 }
+
+export interface INotificationTemplate {
+  username: string;
+  message: string;
+  header: string;
+}
