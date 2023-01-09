@@ -32,7 +32,7 @@ class CommentService {
         userFrom,
         userTo,
         message: `${username} commented on your post.`,
-    //     notificationType: 'comment',
+        notificationType: 'comment',
     //     entityId: new mongoose.Types.ObjectId(postId),
     //     createdItemId: new mongoose.Types.ObjectId(response[0]._id!),
     //     createdAt: new Date(),
