@@ -40,7 +40,7 @@ class CommentService {
         post: response[1].post,
         imgId: response[1].imgId!,
         imgVersion: response[1].imgVersion!,
-    //     gifUrl: response[1].gifUrl!,
+        gifUrl: response[1].gifUrl!,
     //     reaction: ''
     //   });
     //   socketIONotificationObject.emit('insert notification', notifications, { userTo });
