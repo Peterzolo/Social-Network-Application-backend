@@ -1,6 +1,6 @@
 import { Server } from 'socket.io';
 
-// let socketIONotificationObject: Server;
+let socketIONotificationObject: Server;
 
 // export class SocketIONotificationHandler {
 //   public listen(io: Server): void {
