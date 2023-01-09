@@ -27,7 +27,7 @@ class CommentService {
     const response: [ICommentDocument, IPostDocument, IUserDocument] = await Promise.all([comments, post, user]);
 
     if (response[2].notifications.comments && userFrom !== userTo) {
-    //   const notificationModel: INotificationDocument = new NotificationModel();
+      const notificationModel: INotificationDocument = new NotificationModel();
     //   const notifications = await notificationModel.insertNotification({
     //     userFrom,
     //     userTo,
