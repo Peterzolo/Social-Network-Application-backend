@@ -30,7 +30,7 @@ class CommentService {
       const notificationModel: INotificationDocument = new NotificationModel();
       const notifications = await notificationModel.insertNotification({
         userFrom,
-    //     userTo,
+        userTo,
     //     message: `${username} commented on your post.`,
     //     notificationType: 'comment',
     //     entityId: new mongoose.Types.ObjectId(postId),
