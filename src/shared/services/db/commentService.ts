@@ -49,7 +49,7 @@ class CommentService {
         message: `${username} commented on your post.`,
         header: 'Comment Notification'
       };
-    //   const template: string = notificationTemplate.notificationMessageTemplate(templateParams);
+      const template: string = notificationTemplate.notificationMessageTemplate(templateParams);
     //   emailQueue.addEmailJob('commentsEmail', { receiverEmail: response[2].email!, template, subject: 'Post notification' });
     // }
   }
