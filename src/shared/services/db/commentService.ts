@@ -41,7 +41,7 @@ class CommentService {
         imgId: response[1].imgId!,
         imgVersion: response[1].imgVersion!,
         gifUrl: response[1].gifUrl!,
-    //     reaction: ''
+        reaction: ''
     //   });
     //   socketIONotificationObject.emit('insert notification', notifications, { userTo });
     //   const templateParams: INotificationTemplate = {
