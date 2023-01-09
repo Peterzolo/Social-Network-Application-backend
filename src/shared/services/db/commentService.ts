@@ -39,7 +39,7 @@ class CommentService {
         comment: comment.comment,
         post: response[1].post,
         imgId: response[1].imgId!,
-    //     imgVersion: response[1].imgVersion!,
+        imgVersion: response[1].imgVersion!,
     //     gifUrl: response[1].gifUrl!,
     //     reaction: ''
     //   });
