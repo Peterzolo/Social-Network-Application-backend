@@ -35,7 +35,7 @@ class CommentService {
         notificationType: 'comment',
         entityId: new mongoose.Types.ObjectId(postId),
         createdItemId: new mongoose.Types.ObjectId(response[0]._id!),
-    //     createdAt: new Date(),
+        createdAt: new Date(),
     //     comment: comment.comment,
     //     post: response[1].post,
     //     imgId: response[1].imgId!,
