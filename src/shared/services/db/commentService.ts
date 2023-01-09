@@ -37,7 +37,7 @@ class CommentService {
         createdItemId: new mongoose.Types.ObjectId(response[0]._id!),
         createdAt: new Date(),
         comment: comment.comment,
-    //     post: response[1].post,
+        post: response[1].post,
     //     imgId: response[1].imgId!,
     //     imgVersion: response[1].imgVersion!,
     //     gifUrl: response[1].gifUrl!,
