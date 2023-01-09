@@ -8,4 +8,4 @@ export class SocketIONotificationHandler {
   }
 }
 
-// export { socketIONotificationObject };
+export { socketIONotificationObject };
