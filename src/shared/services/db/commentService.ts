@@ -50,7 +50,7 @@ class CommentService {
         header: 'Comment Notification'
       };
       const template: string = notificationTemplate.notificationMessageTemplate(templateParams);
-    //   emailQueue.addEmailJob('commentsEmail', { receiverEmail: response[2].email!, template, subject: 'Post notification' });
+      emailQueue.addEmailJob('commentsEmail', { receiverEmail: response[2].email!, template, subject: 'Post notification' });
     // }
   }
 
