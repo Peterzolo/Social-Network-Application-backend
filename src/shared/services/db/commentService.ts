@@ -28,7 +28,7 @@ class CommentService {
 
     if (response[2].notifications.comments && userFrom !== userTo) {
       const notificationModel: INotificationDocument = new NotificationModel();
-    //   const notifications = await notificationModel.insertNotification({
+      const notifications = await notificationModel.insertNotification({
     //     userFrom,
     //     userTo,
     //     message: `${username} commented on your post.`,
