@@ -5,7 +5,7 @@ import { PostModel } from '@post/models/post.schema';
 import mongoose, { Query } from 'mongoose';
 import { UserCache } from '@service/redis/userCache';
 import { IUserDocument } from '@user/interfaces/user.interface';
-// import { NotificationModel } from '@notification/models/notification.schema';
+import { NotificationModel } from '@notification/models/notificationSchema';
 // import { INotificationDocument, INotificationTemplate } from '@notification/interfaces/notification.interface';
 // import { socketIONotificationObject } from '@socket/postSocket';
 // import { notificationTemplate } from '@service/emails/templates/notifications/notification-template';
