@@ -127,8 +127,8 @@ export class PeepsArena {
     postSocketHandler.listen();
     followerSocketHandler.listen();
     userSocketHandler.listen();
+    notificationSocketHandler.listen(io);
     // chatSocketHandler.listen();
-    // notificationSocketHandler.listen(io);
     // imageSocketHandler.listen(io);
   }
 }
