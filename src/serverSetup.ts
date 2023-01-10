@@ -17,6 +17,7 @@ import { CustomError, IErrorResponse } from '@global/helpers/customErrorHandler'
 import { SocketIOPostHandler } from '@socket/postSocket';
 import { SocketIOFollowerHandler } from '@socket/followerSocket';
 import { SocketIOUserHandler } from '@socket/userSocket';
+import { SocketIONotificationHandler } from '@socket/notificationSocket';
 
 const PORT = process.env.PORT || 5000;
 const log: Logger = config.createLogger('server-setup');
@@ -119,8 +120,8 @@ export class PeepsArena {
     const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
     const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
     const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     // const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
-    // const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     // const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
 
     postSocketHandler.listen();
