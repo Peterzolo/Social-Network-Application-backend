@@ -8,7 +8,7 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 import { NotificationModel } from '@notification/models/notificationSchema';
 import { INotificationDocument, INotificationTemplate } from '@notification/interfaces/notificationInterface';
 import { socketIONotificationObject } from '@socket/notificationSocket';
-// import { notificationTemplate } from '@service/emails/templates/notifications/notification-template';
+import { notificationTemplate } from '@service/email/notification-template/index';
 import { emailQueue } from '@service/queues/emailQueues';
 
 const userCache: UserCache = new UserCache();
