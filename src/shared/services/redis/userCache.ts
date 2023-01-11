@@ -93,7 +93,7 @@ export class UserCache extends BaseCache {
       response.profilePicture = Helpers.parseJson(`${response.profilePicture}`);
       response.work = Helpers.parseJson(`${response.work}`);
       response.school = Helpers.parseJson(`${response.school}`);
-      // response.location = Helpers.parseJson(`${response.location}`);
+      response.location = Helpers.parseJson(`${response.location}`);
       response.quote = Helpers.parseJson(`${response.quote}`);
 
       return response;
