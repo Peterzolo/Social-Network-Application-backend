@@ -1,6 +1,10 @@
 import { INotificationDocument, INotification } from '@notification/interfaces/notificationInterface';
 import { notificationService } from '@service/db/notificationService';
 import mongoose, { model, Model, Schema } from 'mongoose';
+import Logger from 'bunyan';
+import { config } from '@root/configuration';
+
+const log: Logger = config.createLogger('Notification-error');
 
 const notificationSchema: Schema = new Schema({
   userTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: true },
@@ -53,8 +57,10 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
   });
   try {
     const notifications: INotificationDocument[] = await notificationService.getNotifications(userTo);
+    console.log('Not user', notifications);
     return notifications;
   } catch (error) {
+    log.error(error);
     return error;
   }
 };
