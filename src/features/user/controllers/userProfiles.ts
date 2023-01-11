@@ -11,3 +11,5 @@ import mongoose from 'mongoose';
 import { Helpers } from '@global/helpers';
 import { IPostDocument } from '@post/interfaces/postInterface';
 import { postService } from '@service/db/postService';
+
+const PAGE_SIZE = 10;
