@@ -37,6 +37,7 @@ class NotificationService {
         }
       }
     ]);
+    console.log('USER', notifications);
     return notifications;
   }
 

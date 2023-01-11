@@ -23,6 +23,7 @@ class CommentService {
       { new: true }
     ) as Query<IPostDocument, IPostDocument>;
     const user: Promise<IUserDocument> = userCache.getUserFromCache(userTo) as Promise<IUserDocument>;
+    console.log('NEW USER', user);
     const response: [ICommentDocument, IPostDocument, IUserDocument] = await Promise.all([comments, post, user]);
 
     if (response[2].notifications.comments && userFrom !== userTo) {

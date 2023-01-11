@@ -26,8 +26,10 @@ class MailTransport {
 
   private async developmentEmailSender(receiverEmail: string, subject: string, body: string): Promise<void> {
     const transporter: Mail = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
+      // host: 'smtp.ethereal.email',
+      host: 'smtp.mailtrap.io',
+      port: 2525,
+      // port: 587,
       secure: false,
       auth: {
         user: config.SENDER_EMAIL!,
@@ -45,8 +47,8 @@ class MailTransport {
     try {
       await transporter.sendMail(mailOptions);
       log.info('Development email sent successfully.');
-    } catch (error) {
-      log.error('Error sending email', error);
+    } catch (error: any) {
+      log.error('Error sending email', error.response);
       throw new BadRequestError('Error sending email');
     }
   }
