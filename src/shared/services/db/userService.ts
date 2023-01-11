@@ -1,7 +1,7 @@
 import { IBasicInfo, ISearchUser, IUserDocument, ISocialLinks, INotificationSettings } from '@user/interfaces/user.interface';
 import { UserModel } from '@user/model/user.schema';
 import mongoose from 'mongoose';
-// import { indexOf } from 'lodash';
+import { indexOf } from 'lodash';
 import { followerService } from '@service/db/followerService';
 import { AuthModel } from '@auth/models/auth.schema';
 
