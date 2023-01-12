@@ -57,5 +57,12 @@ export class Get {
     return { users, totalUsers };
   }
 
+  private async followers(userId: string): Promise<IFollowerData[]> {
+    // const cachedFollowers: IFollowerData[] = await followerCache.getFollowersFromCache(`followers:${userId}`);
+    // const result = cachedFollowers.length ? cachedFollowers : await followerService.getFollowerData(new mongoose.Types.ObjectId(userId));
+    const result = await followerService.getFollowerData(new mongoose.Types.ObjectId(userId));
+    return result;
+  }
+
   //   End of the line
 }
