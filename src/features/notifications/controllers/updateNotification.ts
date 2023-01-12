@@ -1,5 +1,5 @@
-import { notificationQueue } from '@service/queues/notification.queue';
-import { socketIONotificationObject } from '@socket/notification';
+import { notificationQueue } from '@service/queues/notificationQueue';
+import { socketIONotificationObject } from '@socket/notificationSocket';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 
