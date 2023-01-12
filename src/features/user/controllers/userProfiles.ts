@@ -58,7 +58,7 @@ export class Get {
   }
 
   // Get loggedin  user profile
-  public async profile(req: Request, res: Response): Promise<void> {
+  public async currentUserProfile(req: Request, res: Response): Promise<void> {
     // const cachedUser: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
     // const existingUser: IUserDocument = cachedUser ? cachedUser : await userService.getUserById(`${req.currentUser!.userId}`);
     const existingUser: IUserDocument = await userService.getUserById(`${req.currentUser!.userId}`);
@@ -66,7 +66,7 @@ export class Get {
   }
 
   // Get a single user profile by ID
-  public async profileByUserId(req: Request, res: Response): Promise<void> {
+  public async singleUserProfile(req: Request, res: Response): Promise<void> {
     const { userId } = req.params;
     // const cachedUser: IUserDocument = (await userCache.getUserFromCache(userId)) as IUserDocument;
     // const existingUser: IUserDocument = cachedUser ? cachedUser : await userService.getUserById(userId);
