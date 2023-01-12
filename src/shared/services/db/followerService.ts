@@ -5,11 +5,11 @@ import mongoose, { Query } from 'mongoose';
 import { IFollowerData, IFollowerDocument } from '@follower/interfaces/followersInterface.ts';
 import { IQueryDeleted, IQueryComplete } from '@post/interfaces/postInterface';
 import { IUserDocument } from '@user/interfaces/user.interface';
-// import { INotificationDocument, INotificationTemplate } from '@notification/interfaces/notification.interface';
-// import { NotificationModel } from '@notification/models/notification.schema';
-// import { socketIONotificationObject } from '@socket/notification';
-// import { notificationTemplate } from '@service/emails/templates/notifications/notification-template';
-// import { emailQueue } from '@service/queues/emailQueues';
+import { INotificationDocument, INotificationTemplate } from '@notification/interfaces/notificationInterface';
+import { NotificationModel } from '@notification/models/notificationSchema';
+import { socketIONotificationObject } from '@socket/notificationSocket';
+import { notificationTemplate } from '@service/email/notification-template/index';
+import { emailQueue } from '@service/queues/emailQueues';
 import { UserCache } from '@service/redis/userCache';
 import { map } from 'lodash';
 
