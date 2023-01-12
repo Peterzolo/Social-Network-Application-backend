@@ -25,7 +25,6 @@ class CommentService {
     ) as Query<IPostDocument, IPostDocument>;
     // const user: Promise<IUserDocument> = userCache.getUserFromCache(userTo) as Promise<IUserDocument>;
     const existingUser: IUserDocument = await userService.getUserById(userTo);
-    console.log('EXISTING USER', existingUser);
     const response: [ICommentDocument, IPostDocument, IUserDocument] = await Promise.all([comments, post, existingUser]);
 
     if (response[2].notifications.comments && userFrom !== userTo) {
