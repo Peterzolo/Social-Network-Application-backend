@@ -57,6 +57,13 @@ export class Get {
     return { users, totalUsers };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  private async usersCount(type: string): Promise<number> {
+    // const totalUsers: number = type === 'redis' ? await userCache.getTotalUsersInCache() : await userService.getTotalUsersInDB();
+    const totalUsers: number = await userService.getTotalUsersInDB();
+    return totalUsers;
+  }
+
   private async followers(userId: string): Promise<IFollowerData[]> {
     // const cachedFollowers: IFollowerData[] = await followerCache.getFollowersFromCache(`followers:${userId}`);
     // const result = cachedFollowers.length ? cachedFollowers : await followerService.getFollowerData(new mongoose.Types.ObjectId(userId));
