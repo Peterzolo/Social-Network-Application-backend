@@ -7,6 +7,7 @@ import { UserCache } from '@service/redis/userCache';
 import { IUserDocument } from '@user/interfaces/user.interface';
 import { omit } from 'lodash';
 import mongoose from 'mongoose';
+import { userService } from './userService';
 // import { INotificationDocument, INotificationTemplate } from '@notification/interfaces/notification.interface';
 // import { NotificationModel } from '@notification/models/notification.schema';
 // import { socketIONotificationObject } from '@socket/notification';
@@ -19,11 +20,13 @@ class ReactionService {
   public async addReactionDataToDB(reactionData: IReactionJob): Promise<void> {
     const { postId, userTo, userFrom, username, type, previousReaction, reactionObject } = reactionData;
     let updatedReactionObject: IReactionDocument = reactionObject as IReactionDocument;
+
     if (previousReaction) {
       updatedReactionObject = omit(reactionObject, ['_id']);
     }
     const updatedReaction: [IUserDocument, IReactionDocument, IPostDocument] = (await Promise.all([
-      userCache.getUserFromCache(`${userTo}`),
+      // userCache.getUserFromCache(`${userTo}`),
+      userService.getUserById(`${userTo}`),
       ReactionModel.replaceOne({ postId, type: previousReaction, username }, updatedReactionObject, { upsert: true }),
       PostModel.findOneAndUpdate(
         { _id: postId },
