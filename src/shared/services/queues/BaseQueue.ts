@@ -10,12 +10,19 @@ import { IPostJobData } from '@post/interfaces/postInterface';
 import { IReactionJob } from '@reaction/interefaces/reactionInterface';
 import { ICommentJob } from '@comment/interfaces/commentInterface';
 import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/followersInterface.ts';
-// import { INotificationJobData } from '@notification/interfaces/notification.interface';
+import { INotificationJobData } from '@notification/interfaces/notificationInterface';
 // import { IFileImageJobData } from '@image/interfaces/image.interface';
 // import { IChatJobData, IMessageData } from '@chat/interfaces/chat.interface';
 
-type IBaseJobData = IAuthJob | IEmailJob | IPostJobData | IReactionJob | ICommentJob | IFollowerJobData | IBlockedUserJobData;
-// | INotificationJobData
+type IBaseJobData =
+  | IAuthJob
+  | IEmailJob
+  | IPostJobData
+  | IReactionJob
+  | ICommentJob
+  | IFollowerJobData
+  | IBlockedUserJobData
+  | INotificationJobData;
 // | IFileImageJobData
 // | IChatJobData
 // | IMessageData
