@@ -40,4 +40,22 @@ export class Get {
     const followers: IFollowerData[] = await Get.prototype.followers(`${req.currentUser!.userId}`);
     res.status(HTTP_STATUS.OK).json({ message: 'Get users', users: allUsers.users, totalUsers: allUsers.totalUsers, followers });
   }
+
+  //   Private method to fetch either from user cache or database
+  private async allUsers({ newSkip, limit, skip, userId }: IUserAll): Promise<IAllUsers> {
+    let users;
+    let type = '';
+    const cachedUsers: IUserDocument[] = (await userCache.getUsersFromCache(newSkip, limit, userId)) as IUserDocument[];
+    if (cachedUsers.length) {
+      type = 'redis';
+      users = cachedUsers;
+    } else {
+      type = 'mongodb';
+      users = await userService.getAllUsers(userId, skip, limit);
+    }
+    const totalUsers: number = await Get.prototype.usersCount(type);
+    return { users, totalUsers };
+  }
+
+  //   End of the line
 }
