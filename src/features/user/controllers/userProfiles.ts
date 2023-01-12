@@ -13,3 +13,10 @@ import { IPostDocument } from '@post/interfaces/postInterface';
 import { postService } from '@service/db/postService';
 
 const PAGE_SIZE = 10;
+
+interface IUserAll {
+  newSkip: number;
+  limit: number;
+  skip: number;
+  userId: string;
+}
