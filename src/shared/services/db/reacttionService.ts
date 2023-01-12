@@ -41,14 +41,12 @@ class ReactionService {
       )
     ])) as unknown as [IUserDocument, IReactionDocument, IPostDocument];
 
-    console.log('REACTION UPDATE', updatedReaction);
-
     if (updatedReaction[0].notifications.reactions && userTo !== userFrom) {
       const notificationModel: INotificationDocument = new NotificationModel();
       const notifications = await notificationModel.insertNotification({
         userFrom: userFrom as string,
         userTo: userTo as string,
-        message: `${username} reacted to your post.`,
+        message: `${username} has also reacted to your post.`,
         notificationType: 'reactions',
         entityId: new mongoose.Types.ObjectId(postId),
         createdItemId: new mongoose.Types.ObjectId(updatedReaction[1]._id!),
