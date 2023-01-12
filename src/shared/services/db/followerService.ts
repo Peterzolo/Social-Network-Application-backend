@@ -14,6 +14,7 @@ import { UserCache } from '@service/redis/userCache';
 import { map } from 'lodash';
 import { userService } from '@service/db/userService';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const userCache: UserCache = new UserCache();
 
 class FollowerService {
