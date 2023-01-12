@@ -10,6 +10,7 @@ import { INotificationDocument, INotificationTemplate } from '@notification/inte
 import { socketIONotificationObject } from '@socket/notificationSocket';
 import { notificationTemplate } from '@service/email/notification-template/index';
 import { emailQueue } from '@service/queues/emailQueues';
+import { userService } from './userService';
 
 const userCache: UserCache = new UserCache();
 
@@ -22,10 +23,11 @@ class CommentService {
       { $inc: { commentsCount: 1 } },
       { new: true }
     ) as Query<IPostDocument, IPostDocument>;
-    const user: Promise<IUserDocument> = userCache.getUserFromCache(userTo) as Promise<IUserDocument>;
-    console.log('NEW USER', user);
-    const response: [ICommentDocument, IPostDocument, IUserDocument] = await Promise.all([comments, post, user]);
-    console.log('USER CACHE', response);
+    // const user: Promise<IUserDocument> = userCache.getUserFromCache(userTo) as Promise<IUserDocument>;
+    const existingUser: IUserDocument = await userService.getUserById(userTo);
+    console.log('EXISTING USER', existingUser);
+    const response: [ICommentDocument, IPostDocument, IUserDocument] = await Promise.all([comments, post, existingUser]);
+
     if (response[2].notifications.comments && userFrom !== userTo) {
       const notificationModel: INotificationDocument = new NotificationModel();
       const notifications = await notificationModel.insertNotification({
