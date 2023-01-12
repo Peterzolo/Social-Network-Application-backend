@@ -74,6 +74,7 @@ export class Get {
     res.status(HTTP_STATUS.OK).json({ message: 'User profile fetched', user: existingUser });
   }
 
+  // Fetch a user's profile and posts
   public async profileAndPosts(req: Request, res: Response): Promise<void> {
     const { userId, username, uId } = req.params;
     const userName: string = Helpers.firstLetterUppercase(username);
