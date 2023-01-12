@@ -25,4 +25,6 @@ const postCache: PostCache = new PostCache();
 const userCache: UserCache = new UserCache();
 const followerCache: FollowerCache = new FollowerCache();
 
-export class Get {}
+export class Get {
+  public async all(req: Request, res: Response): Promise<void> {}
+}
