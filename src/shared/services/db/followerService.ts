@@ -44,7 +44,7 @@ class FollowerService {
 
     // const response: [BulkWriteResult, IUserDocument | null] = await Promise.all([users, userCache.getUserFromCache(followeeId)]);
     const response: [BulkWriteResult, IUserDocument | null] = await Promise.all([users, userService.getUserById(followeeId)]);
-
+    console.log('USER NOTIFICATION', response[1]);
     if (response[1]?.notifications.follows && userId !== followeeId) {
       const notificationModel: INotificationDocument = new NotificationModel();
       const notifications = await notificationModel.insertNotification({
@@ -62,19 +62,19 @@ class FollowerService {
         gifUrl: '',
         reaction: ''
       });
-    //   socketIONotificationObject.emit('insert notification', notifications, { userTo: followeeId });
-    //   const templateParams: INotificationTemplate = {
-    //     username: response[1].username!,
-    //     message: `${username} is now following you.`,
-    //     header: 'Follower Notification'
-    //   };
-    //   const template: string = notificationTemplate.notificationMessageTemplate(templateParams);
-    //   emailQueue.addEmailJob('followersEmail', {
-    //     receiverEmail: response[1].email!,
-    //     template,
-    //     subject: `${username} is now following you.`
-    //   });
-    // }
+      socketIONotificationObject.emit('insert notification', notifications, { userTo: followeeId });
+      const templateParams: INotificationTemplate = {
+        username: response[1].username!,
+        message: `${username} has now started following you.`,
+        header: 'Follower Notification'
+      };
+      const template: string = notificationTemplate.notificationMessageTemplate(templateParams);
+      emailQueue.addEmailJob('followersEmail', {
+        receiverEmail: response[1].email!,
+        template,
+        subject: `${username} is now following you.`
+      });
+    }
   }
 
   public async removeFollowerFromDB(followeeId: string, followerId: string): Promise<void> {
