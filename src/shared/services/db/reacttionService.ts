@@ -14,6 +14,7 @@ import { socketIONotificationObject } from '@socket/notificationSocket';
 import { notificationTemplate } from '@service/email/notification-template/index';
 import { emailQueue } from '@service/queues/emailQueues';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const userCache: UserCache = new UserCache();
 
 class ReactionService {
