@@ -20,3 +20,7 @@ interface IUserAll {
   skip: number;
   userId: string;
 }
+
+const postCache: PostCache = new PostCache();
+const userCache: UserCache = new UserCache();
+const followerCache: FollowerCache = new FollowerCache();
