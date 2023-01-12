@@ -9,9 +9,9 @@ class NotificationQueue extends BaseQueue {
     this.processJob('deleteNotification', 5, notificationWorker.deleteNotification);
   }
 
-//   public addNotificationJob(name: string, data: INotificationJobData): void {
-//     this.addJob(name, data);
-//   }
-// }
+  public addNotificationJob(name: string, data: INotificationJobData): void {
+    this.addJob(name, data);
+  }
+}
 
 export const notificationQueue: NotificationQueue = new NotificationQueue();
