@@ -62,7 +62,16 @@ export class Get {
     // const cachedUser: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
     // const existingUser: IUserDocument = cachedUser ? cachedUser : await userService.getUserById(`${req.currentUser!.userId}`);
     const existingUser: IUserDocument = await userService.getUserById(`${req.currentUser!.userId}`);
-    res.status(HTTP_STATUS.OK).json({ message: 'Get user profile', user: existingUser });
+    res.status(HTTP_STATUS.OK).json({ message: 'Logged in user profile fetched', user: existingUser });
+  }
+
+  // Get a single user profile by ID
+  public async profileByUserId(req: Request, res: Response): Promise<void> {
+    const { userId } = req.params;
+    // const cachedUser: IUserDocument = (await userCache.getUserFromCache(userId)) as IUserDocument;
+    // const existingUser: IUserDocument = cachedUser ? cachedUser : await userService.getUserById(userId);
+    const existingUser: IUserDocument = await userService.getUserById(userId);
+    res.status(HTTP_STATUS.OK).json({ message: 'User profile fetched', user: existingUser });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
