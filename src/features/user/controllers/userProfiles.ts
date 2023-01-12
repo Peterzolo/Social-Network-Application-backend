@@ -93,6 +93,19 @@ export class Get {
     res.status(HTTP_STATUS.OK).json({ message: 'Get user profile and posts', user: existingUser, posts: userPosts });
   }
 
+  // Fetch random user selection
+  public async randomUserSuggestions(req: Request, res: Response): Promise<void> {
+    let randomUsers: IUserDocument[] = [];
+    // const cachedUsers: IUserDocument[] = await userCache.getRandomUsersFromCache(`${req.currentUser!.userId}`, req.currentUser!.username);
+    // if (cachedUsers.length) {
+    // randomUsers = [...cachedUsers];
+    // } else {
+    const users: IUserDocument[] = await userService.getRandomUsers(req.currentUser!.userId);
+    randomUsers = [...users];
+    // }
+    res.status(HTTP_STATUS.OK).json({ message: 'User suggestions', users: randomUsers });
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async usersCount(type: string): Promise<number> {
     // const totalUsers: number = type === 'redis' ? await userCache.getTotalUsersInCache() : await userService.getTotalUsersInDB();
