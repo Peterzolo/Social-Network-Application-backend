@@ -24,3 +24,5 @@ interface IUserAll {
 const postCache: PostCache = new PostCache();
 const userCache: UserCache = new UserCache();
 const followerCache: FollowerCache = new FollowerCache();
+
+export class Get {}
