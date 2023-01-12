@@ -26,5 +26,13 @@ const userCache: UserCache = new UserCache();
 const followerCache: FollowerCache = new FollowerCache();
 
 export class Get {
-  public async all(req: Request, res: Response): Promise<void> {}
+  public async all(req: Request, res: Response): Promise<void> {
+
+    public async all(req: Request, res: Response): Promise<void> {
+        const { page } = req.params;
+        const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
+        const limit: number = PAGE_SIZE * parseInt(page);
+        const newSkip: number = skip === 0 ? skip : skip + 1;
+        const allUsers = await Get.prototype.allUsers({
+  }
 }
