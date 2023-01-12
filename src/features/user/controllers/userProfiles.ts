@@ -57,6 +57,15 @@ export class Get {
     return { users, totalUsers };
   }
 
+  // Get a single user
+
+  public async profile(req: Request, res: Response): Promise<void> {
+    // const cachedUser: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
+    // const existingUser: IUserDocument = cachedUser ? cachedUser : await userService.getUserById(`${req.currentUser!.userId}`);
+    const existingUser: IUserDocument = await userService.getUserById(`${req.currentUser!.userId}`);
+    res.status(HTTP_STATUS.OK).json({ message: 'Get user profile', user: existingUser });
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private async usersCount(type: string): Promise<number> {
     // const totalUsers: number = type === 'redis' ? await userCache.getTotalUsersInCache() : await userService.getTotalUsersInDB();
