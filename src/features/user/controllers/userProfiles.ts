@@ -27,12 +27,17 @@ const followerCache: FollowerCache = new FollowerCache();
 
 export class Get {
   public async all(req: Request, res: Response): Promise<void> {
-
-    public async all(req: Request, res: Response): Promise<void> {
-        const { page } = req.params;
-        const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
-        const limit: number = PAGE_SIZE * parseInt(page);
-        const newSkip: number = skip === 0 ? skip : skip + 1;
-        const allUsers = await Get.prototype.allUsers({
+    const { page } = req.params;
+    const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
+    const limit: number = PAGE_SIZE * parseInt(page);
+    const newSkip: number = skip === 0 ? skip : skip + 1;
+    const allUsers = await Get.prototype.allUsers({
+      newSkip,
+      limit,
+      skip,
+      userId: `${req.currentUser!.userId}`
+    });
+    const followers: IFollowerData[] = await Get.prototype.followers(`${req.currentUser!.userId}`);
+    res.status(HTTP_STATUS.OK).json({ message: 'Get users', users: allUsers.users, totalUsers: allUsers.totalUsers, followers });
   }
 }
