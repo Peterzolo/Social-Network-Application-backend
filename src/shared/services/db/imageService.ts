@@ -8,10 +8,10 @@ class ImageService {
     await UserModel.updateOne({ _id: userId }, { $set: { profilePicture: url } }).exec();
     await this.addImage(userId, imgId, imgVersion, 'profile');
   }
-  // public async addBackgroundImageToDB(userId: string, imgId: string, imgVersion: string): Promise<void> {
-  //   await UserModel.updateOne({ _id: userId }, { $set: { bgImageId: imgId, bgImageVersion: imgVersion } }).exec();
-  //   await this.addImage(userId, imgId, imgVersion, 'background');
-  // }
+  public async addBackgroundImageToDB(userId: string, imgId: string, imgVersion: string): Promise<void> {
+    await UserModel.updateOne({ _id: userId }, { $set: { bgImageId: imgId, bgImageVersion: imgVersion } }).exec();
+    await this.addImage(userId, imgId, imgVersion, 'background');
+  }
   // public async addImage(userId: string, imgId: string, imgVersion: string, type: string): Promise<void> {
   //   await ImageModel.create({
   //     userId,
