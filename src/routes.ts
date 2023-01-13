@@ -3,6 +3,7 @@ import { currentUserRoutes } from '@auth/routes/currentUserRoute';
 import { commentRoutes } from '@comment/routes/commentRoutes';
 import { followerRoutes } from '@follower/routes/followerRoutes';
 import { authMiddleware } from '@global/helpers/authMiddleware';
+import { imageRoutes } from '@image/routes/imageRoutes';
 import { notificationRoutes } from '@notification/routes/notificationRoutes';
 import { postRoutes } from '@post/routes';
 import { reactionRoutes } from '@reaction/routes';
@@ -21,6 +22,7 @@ export const routeWrapper = (app: Application) => {
     app.use(BASE_PATH, authMiddleware.verifyUser, commentRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, followerRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, notificationRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, imageRoutes.routes());
   };
   routes();
 };
