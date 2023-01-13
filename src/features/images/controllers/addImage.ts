@@ -11,3 +11,7 @@ import { socketIOImageObject } from '@socket/imageSocket';
 import { imageQueue } from '@service/queues/imageQueue';
 import { IBgUploadResponse } from '@image/interfaces/imageInterface';
 import { Helpers } from '@global/helpers';
+
+const userCache: UserCache = new UserCache();
+
+export class Add {}
