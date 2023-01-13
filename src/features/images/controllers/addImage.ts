@@ -36,4 +36,31 @@ export class Add {
     });
     res.status(HTTP_STATUS.OK).json({ message: 'Image added successfully' });
   }
+
+  @joiValidation(addImageSchema)
+  public async backgroundImage(req: Request, res: Response): Promise<void> {
+    const { version, publicId }: IBgUploadResponse = await Add.prototype.backgroundUpload(req.body.image);
+    const bgImageId: Promise<IUserDocument> = userCache.updateSingleUserItemInCache(
+      `${req.currentUser!.userId}`,
+      'bgImageId',
+      publicId
+    ) as Promise<IUserDocument>;
+    const bgImageVersion: Promise<IUserDocument> = userCache.updateSingleUserItemInCache(
+      `${req.currentUser!.userId}`,
+      'bgImageVersion',
+      version
+    ) as Promise<IUserDocument>;
+    const response: [IUserDocument, IUserDocument] = (await Promise.all([bgImageId, bgImageVersion])) as [IUserDocument, IUserDocument];
+    socketIOImageObject.emit('update user', {
+      bgImageId: publicId,
+      bgImageVersion: version,
+      userId: response[0]
+    });
+    imageQueue.addImageJob('updateBGImageInDB', {
+      key: `${req.currentUser!.userId}`,
+      imgId: publicId,
+      imgVersion: version.toString()
+    });
+    res.status(HTTP_STATUS.OK).json({ message: 'Image added successfully' });
+  }
 }
