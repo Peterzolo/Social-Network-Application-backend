@@ -4,10 +4,10 @@ import { UserModel } from '@user/model/user.schema';
 import mongoose from 'mongoose';
 
 class ImageService {
-  // public async addUserProfileImageToDB(userId: string, url: string, imgId: string, imgVersion: string): Promise<void> {
-  //   await UserModel.updateOne({ _id: userId }, { $set: { profilePicture: url } }).exec();
-  //   await this.addImage(userId, imgId, imgVersion, 'profile');
-  // }
+  public async addUserProfileImageToDB(userId: string, url: string, imgId: string, imgVersion: string): Promise<void> {
+    await UserModel.updateOne({ _id: userId }, { $set: { profilePicture: url } }).exec();
+    await this.addImage(userId, imgId, imgVersion, 'profile');
+  }
   // public async addBackgroundImageToDB(userId: string, imgId: string, imgVersion: string): Promise<void> {
   //   await UserModel.updateOne({ _id: userId }, { $set: { bgImageId: imgId, bgImageVersion: imgVersion } }).exec();
   //   await this.addImage(userId, imgId, imgVersion, 'background');
