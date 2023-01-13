@@ -1,4 +1,3 @@
-import { BadRequestError } from '@global/helpers/customErrorHandler';
 import { INotificationDocument } from '@notification/interfaces/notificationInterface';
 import { notificationService } from '@service/db/notificationService';
 import { Request, Response } from 'express';
@@ -10,7 +9,7 @@ export class Get {
     if (!notifications.length) {
       res.status(HTTP_STATUS.OK).json({ message: 'User notifications', notifications });
     } else {
-      throw new BadRequestError('No notification found');
+      res.status(401).send({ message: 'No Notification found' });
     }
   }
 }
