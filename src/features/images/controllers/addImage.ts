@@ -14,4 +14,26 @@ import { Helpers } from '@global/helpers';
 
 const userCache: UserCache = new UserCache();
 
-export class Add {}
+export class Add {
+  @joiValidation(addImageSchema)
+  public async profileImage(req: Request, res: Response): Promise<void> {
+    const result: UploadApiResponse = (await uploads(req.body.image, req.currentUser!.userId, true, true)) as UploadApiResponse;
+    if (!result?.public_id) {
+      throw new BadRequestError('File upload: Error occurred. Try again.');
+    }
+    const url = `https://res.cloudinary.com/dyamr9ym3/image/upload/v${result.version}/${result.public_id}`;
+    const cachedUser: IUserDocument = (await userCache.updateSingleUserItemInCache(
+      `${req.currentUser!.userId}`,
+      'profilePicture',
+      url
+    )) as IUserDocument;
+    socketIOImageObject.emit('update user', cachedUser);
+    imageQueue.addImageJob('addUserProfileImageToDB', {
+      key: `${req.currentUser!.userId}`,
+      value: url,
+      imgId: result.public_id,
+      imgVersion: result.version.toString()
+    });
+    res.status(HTTP_STATUS.OK).json({ message: 'Image added successfully' });
+  }
+}
