@@ -6,7 +6,7 @@ import HTTP_STATUS from 'http-status-codes';
 export class Get {
   public async notifications(req: Request, res: Response): Promise<void> {
     const notifications: INotificationDocument[] = await notificationService.getNotifications(req.currentUser!.userId);
-    if (!notifications.length) {
+    if (notifications.length) {
       res.status(HTTP_STATUS.OK).json({ message: 'User notifications', notifications });
     } else {
       res.status(401).send({ message: 'No Notification found' });
