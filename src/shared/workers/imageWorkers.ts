@@ -40,17 +40,17 @@ class ImageWorker {
       done(error as Error);
     }
   }
-  // async removeImageFromDB(job: Job, done: DoneCallback): Promise<void> {
-  //   try {
-  //     const { imageId } = job.data;
-  //     await imageService.removeImageFromDB(imageId);
-  //     job.progress(100);
-  //     done(null, job.data);
-  //   } catch (error) {
-  //     log.error(error);
-  //     done(error as Error);
-  //   }
-  // }
+  async removeImageFromDB(job: Job, done: DoneCallback): Promise<void> {
+    try {
+      const { imageId } = job.data;
+      await imageService.removeImageFromDB(imageId);
+      job.progress(100);
+      done(null, job.data);
+    } catch (error) {
+      log.error(error);
+      done(error as Error);
+    }
+  }
 }
 
 export const imageWorker: ImageWorker = new ImageWorker();
