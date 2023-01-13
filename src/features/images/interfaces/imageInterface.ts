@@ -8,3 +8,11 @@ export interface IFileImageDocument extends mongoose.Document {
   imgVersion: string;
   createdAt: Date;
 }
+export interface IFileImageJobData {
+  key?: string;
+  value?: string;
+  imgId?: string;
+  imgVersion?: string;
+  userId?: string;
+  imageId?: string;
+}
