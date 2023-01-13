@@ -18,6 +18,7 @@ import { SocketIOPostHandler } from '@socket/postSocket';
 import { SocketIOFollowerHandler } from '@socket/followerSocket';
 import { SocketIOUserHandler } from '@socket/userSocket';
 import { SocketIONotificationHandler } from '@socket/notificationSocket';
+import { SocketIOImageHandler } from '@socket/imageSocket';
 
 const PORT = process.env.PORT || 5000;
 const log: Logger = config.createLogger('server-setup');
@@ -121,14 +122,14 @@ export class PeepsArena {
     const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
     const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
     const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
+    const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
     // const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
-    // const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
 
     postSocketHandler.listen();
     followerSocketHandler.listen();
     userSocketHandler.listen();
     notificationSocketHandler.listen(io);
+    imageSocketHandler.listen(io);
     // chatSocketHandler.listen();
-    // imageSocketHandler.listen(io);
   }
 }
