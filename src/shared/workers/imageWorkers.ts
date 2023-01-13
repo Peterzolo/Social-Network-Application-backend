@@ -18,17 +18,17 @@ class ImageWorker {
     }
   }
 
-  // async updateBGImageInDB(job: Job, done: DoneCallback): Promise<void> {
-  //   try {
-  //     const { key, imgId, imgVersion } = job.data;
-  //     await imageService.addBackgroundImageToDB(key, imgId, imgVersion);
-  //     job.progress(100);
-  //     done(null, job.data);
-  //   } catch (error) {
-  //     log.error(error);
-  //     done(error as Error);
-  //   }
-  // }
+  async updateBGImageInDB(job: Job, done: DoneCallback): Promise<void> {
+    try {
+      const { key, imgId, imgVersion } = job.data;
+      await imageService.addBackgroundImageToDB(key, imgId, imgVersion);
+      job.progress(100);
+      done(null, job.data);
+    } catch (error) {
+      log.error(error);
+      done(error as Error);
+    }
+  }
   // async addImageToDB(job: Job, done: DoneCallback): Promise<void> {
   //   try {
   //     const { key, imgId, imgVersion } = job.data;
