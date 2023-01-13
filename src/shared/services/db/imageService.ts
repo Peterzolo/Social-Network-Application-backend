@@ -24,10 +24,10 @@ class ImageService {
   public async removeImageFromDB(imageId: string): Promise<void> {
     await ImageModel.deleteOne({ _id: imageId }).exec();
   }
-  // public async getImageByBackgroundId(bgImageId: string): Promise<IFileImageDocument> {
-  //   const image: IFileImageDocument = (await ImageModel.findOne({ bgImageId }).exec()) as IFileImageDocument;
-  //   return image;
-  // }
+  public async getImageByBackgroundId(bgImageId: string): Promise<IFileImageDocument> {
+    const image: IFileImageDocument = (await ImageModel.findOne({ bgImageId }).exec()) as IFileImageDocument;
+    return image;
+  }
   // public async getImages(userId: string): Promise<IFileImageDocument[]> {
   //   const images: IFileImageDocument[] = await ImageModel.aggregate([{ $match: { userId: new mongoose.Types.ObjectId(userId) } }]);
   //   return images;
