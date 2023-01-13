@@ -12,15 +12,15 @@ class ImageService {
     await UserModel.updateOne({ _id: userId }, { $set: { bgImageId: imgId, bgImageVersion: imgVersion } }).exec();
     await this.addImage(userId, imgId, imgVersion, 'background');
   }
-  // public async addImage(userId: string, imgId: string, imgVersion: string, type: string): Promise<void> {
-  //   await ImageModel.create({
-  //     userId,
-  //     bgImageVersion: type === 'background' ? imgVersion : '',
-  //     bgImageId: type === 'background' ? imgId : '',
-  //     imgVersion,
-  //     imgId
-  //   });
-  // }
+  public async addImage(userId: string, imgId: string, imgVersion: string, type: string): Promise<void> {
+    await ImageModel.create({
+      userId,
+      bgImageVersion: type === 'background' ? imgVersion : '',
+      bgImageId: type === 'background' ? imgId : '',
+      imgVersion,
+      imgId
+    });
+  }
   // public async removeImageFromDB(imageId: string): Promise<void> {
   //   await ImageModel.deleteOne({ _id: imageId }).exec();
   // }
