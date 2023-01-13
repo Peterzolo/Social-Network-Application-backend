@@ -63,4 +63,24 @@ export class Add {
     });
     res.status(HTTP_STATUS.OK).json({ message: 'Image added successfully' });
   }
+
+  private async backgroundUpload(image: string): Promise<IBgUploadResponse> {
+    const isDataURL = Helpers.isDataURL(image);
+    let version = '';
+    let publicId = '';
+    if (isDataURL) {
+      const result: UploadApiResponse = (await uploads(image)) as UploadApiResponse;
+      if (!result.public_id) {
+        throw new BadRequestError(result.message);
+      } else {
+        version = result.version.toString();
+        publicId = result.public_id;
+      }
+    } else {
+      const value = image.split('/');
+      version = value[value.length - 2];
+      publicId = value[value.length - 1];
+    }
+    return { version: version.replace(/v/g, ''), publicId };
+  }
 }
