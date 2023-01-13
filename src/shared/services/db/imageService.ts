@@ -21,9 +21,9 @@ class ImageService {
       imgId
     });
   }
-  // public async removeImageFromDB(imageId: string): Promise<void> {
-  //   await ImageModel.deleteOne({ _id: imageId }).exec();
-  // }
+  public async removeImageFromDB(imageId: string): Promise<void> {
+    await ImageModel.deleteOne({ _id: imageId }).exec();
+  }
   // public async getImageByBackgroundId(bgImageId: string): Promise<IFileImageDocument> {
   //   const image: IFileImageDocument = (await ImageModel.findOne({ bgImageId }).exec()) as IFileImageDocument;
   //   return image;
