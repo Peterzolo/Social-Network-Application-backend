@@ -16,3 +16,9 @@ export interface IFileImageJobData {
   userId?: string;
   imageId?: string;
 }
+
+export interface IBgUploadResponse {
+  version: string;
+  publicId: string;
+  public_id?: string;
+}
