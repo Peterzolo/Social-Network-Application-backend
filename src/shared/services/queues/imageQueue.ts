@@ -11,9 +11,9 @@ class ImageQueue extends BaseQueue {
     this.processJob('removeImageFromDB', 5, imageWorker.removeImageFromDB);
   }
 
-  // public addImageJob(name: string, data: IFileImageJobData): void {
-  //   this.addJob(name, data);
-  // }
+  public addImageJob(name: string, data: IFileImageJobData): void {
+    this.addJob(name, data);
+  }
 }
 
 export const imageQueue: ImageQueue = new ImageQueue();
