@@ -28,10 +28,10 @@ class ImageService {
     const image: IFileImageDocument = (await ImageModel.findOne({ bgImageId }).exec()) as IFileImageDocument;
     return image;
   }
-  // public async getImages(userId: string): Promise<IFileImageDocument[]> {
-  //   const images: IFileImageDocument[] = await ImageModel.aggregate([{ $match: { userId: new mongoose.Types.ObjectId(userId) } }]);
-  //   return images;
-  // }
+  public async getImages(userId: string): Promise<IFileImageDocument[]> {
+    const images: IFileImageDocument[] = await ImageModel.aggregate([{ $match: { userId: new mongoose.Types.ObjectId(userId) } }]);
+    return images;
+  }
 }
 
 export const imageService: ImageService = new ImageService();
