@@ -14,6 +14,7 @@ import { socketIOChatObject } from '@socket/chatSocket';
 import { INotificationTemplate } from '@notification/interfaces/notificationInterface';
 import { notificationTemplate } from '@service/email/notification-template/index';
 import { emailQueue } from '@service/queues/emailQueues';
+import { userService } from '@service/db/userService';
 // import { MessageCache } from '@service/redis/message.cache';
 // import { chatQueue } from '@service/queues/chat.queue';
 
@@ -98,8 +99,11 @@ export class Add {
     socketIOChatObject.emit('chat list', data);
   }
   private async messageNotification({ currentUser, message, receiverName, receiverId }: IMessageNotification): Promise<void> {
-    const cachedUser: IUserDocument = (await userCache.getUserFromCache(`${receiverId}`)) as IUserDocument;
-    if (cachedUser.notifications.messages) {
+    // const cachedUser: IUserDocument = (await userCache.getUserFromCache(`${receiverId}`)) as IUserDocument;
+    const databasedUser: IUserDocument = (await userService.getUserById(`${receiverId}`)) as IUserDocument;
+
+    // TODO add fetch user from database
+    if (databasedUser.notifications.messages) {
       const templateParams: INotificationTemplate = {
         username: receiverName,
         message,
