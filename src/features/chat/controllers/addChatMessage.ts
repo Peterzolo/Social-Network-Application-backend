@@ -77,12 +77,12 @@ export class Add {
         messageData
       });
     }
-  //   await messageCache.addChatListToCache(`${req.currentUser!.userId}`, `${receiverId}`, `${conversationObjectId}`);
-  //   await messageCache.addChatListToCache(`${receiverId}`, `${req.currentUser!.userId}`, `${conversationObjectId}`);
-  //   await messageCache.addChatMessageToCache(`${conversationObjectId}`, messageData);
-  //   chatQueue.addChatJob('addChatMessageToDB', messageData);
-  //   res.status(HTTP_STATUS.OK).json({ message: 'Message added', conversationId: conversationObjectId });
-  // }
+    await messageCache.addChatListToCache(`${req.currentUser!.userId}`, `${receiverId}`, `${conversationObjectId}`);
+    await messageCache.addChatListToCache(`${receiverId}`, `${req.currentUser!.userId}`, `${conversationObjectId}`);
+    await messageCache.addChatMessageToCache(`${conversationObjectId}`, messageData);
+    chatQueue.addChatJob('addChatMessageToDB', messageData);
+    res.status(HTTP_STATUS.OK).json({ message: 'Message added', conversationId: conversationObjectId });
+  }
   // public async addChatUsers(req: Request, res: Response): Promise<void> {
   //   const chatUsers = await messageCache.addChatUsersToCache(req.body);
   //   socketIOChatObject.emit('add chat users', chatUsers);
