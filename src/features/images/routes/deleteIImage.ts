@@ -9,16 +9,15 @@ import { imageService } from '@service/db/imageService';
 
 const userCache: UserCache = new UserCache();
 
-// export class Delete {
-//   public async image(req: Request, res: Response): Promise<void> {
-//     const { imageId } = req.params;
-//     socketIOImageObject.emit('delete image', imageId);
-//     imageQueue.addImageJob('removeImageFromDB', {
-//       imageId
-//     });
-//     res.status(HTTP_STATUS.OK).json({ message: 'Image deleted successfully' });
-//   }
-
+export class Delete {
+  //   public async image(req: Request, res: Response): Promise<void> {
+  //     const { imageId } = req.params;
+  //     socketIOImageObject.emit('delete image', imageId);
+  //     imageQueue.addImageJob('removeImageFromDB', {
+  //       imageId
+  //     });
+  //     res.status(HTTP_STATUS.OK).json({ message: 'Image deleted successfully' });
+  //   }
   // public async backgroundImage(req: Request, res: Response): Promise<void> {
   //   const image: IFileImageDocument = await imageService.getImageByBackgroundId(req.params.bgImageId);
   //   socketIOImageObject.emit('delete image', image?._id);
