@@ -67,14 +67,14 @@ export interface ITyping {
   receiver: string;
 }
 
-// export interface IChatJobData {
-//   senderId?: mongoose.Types.ObjectId | string;
-//   receiverId?: mongoose.Types.ObjectId | string;
-//   messageId?: mongoose.Types.ObjectId | string;
-//   senderName?: string;
-//   reaction?: string;
-//   type?: string;
-// }
+export interface IChatJobData {
+  senderId?: mongoose.Types.ObjectId | string;
+  receiverId?: mongoose.Types.ObjectId | string;
+  messageId?: mongoose.Types.ObjectId | string;
+  senderName?: string;
+  reaction?: string;
+  type?: string;
+}
 
 // export interface ISenderReceiver {
 //   senderId: string;
