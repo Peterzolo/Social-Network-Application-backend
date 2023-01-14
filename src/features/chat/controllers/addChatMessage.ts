@@ -38,7 +38,9 @@ export class Add {
     let fileUrl = '';
     const messageObjectId: ObjectId = new ObjectId();
     const conversationObjectId: ObjectId = !conversationId ? new ObjectId() : new mongoose.Types.ObjectId(conversationId);
-    const sender: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
+    // const sender: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
+    const sender: IUserDocument = (await userService.getUserById(`${receiverId}`)) as IUserDocument;
+
     // TODO - Fetch user from database here
     if (selectedImage.length) {
       const result: UploadApiResponse = (await uploads(req.body.image, req.currentUser!.userId, true, true)) as UploadApiResponse;
@@ -111,7 +113,7 @@ export class Add {
       };
       const template: string = notificationTemplate.notificationMessageTemplate(templateParams);
       emailQueue.addEmailJob('directMessageEmail', {
-        receiverEmail: cachedUser.email!,
+        receiverEmail: databasedUser.email!,
         template,
         subject: `You've received messages from ${currentUser.username}`
       });
