@@ -46,26 +46,26 @@ export class Add {
       }
       fileUrl = `https://res.cloudinary.com/dyamr9ym3/image/upload/v${result.version}/${result.public_id}`;
     }
-  //   const messageData: IMessageData = {
-  //     _id: `${messageObjectId}`,
-  //     conversationId: new mongoose.Types.ObjectId(conversationObjectId),
-  //     receiverId,
-  //     receiverAvatarColor,
-  //     receiverProfilePicture,
-  //     receiverUsername,
-  //     senderUsername: `${req.currentUser!.username}`,
-  //     senderId: `${req.currentUser!.userId}`,
-  //     senderAvatarColor: `${req.currentUser!.avatarColor}`,
-  //     senderProfilePicture: `${sender.profilePicture}`,
-  //     body,
-  //     isRead,
-  //     gifUrl,
-  //     selectedImage: fileUrl,
-  //     reaction: [],
-  //     createdAt: new Date(),
-  //     deleteForEveryone: false,
-  //     deleteForMe: false
-  //   };
+    const messageData: IMessageData = {
+      _id: `${messageObjectId}`,
+      conversationId: new mongoose.Types.ObjectId(conversationObjectId),
+      receiverId,
+      receiverAvatarColor,
+      receiverProfilePicture,
+      receiverUsername,
+      senderUsername: `${req.currentUser!.username}`,
+      senderId: `${req.currentUser!.userId}`,
+      senderAvatarColor: `${req.currentUser!.avatarColor}`,
+      senderProfilePicture: `${sender.profilePicture}`,
+      body,
+      isRead,
+      gifUrl,
+      selectedImage: fileUrl,
+      reaction: [],
+      createdAt: new Date(),
+      deleteForEveryone: false,
+      deleteForMe: false
+    };
   //   Add.prototype.emitSocketIOEvent(messageData);
   //   if (!isRead) {
   //     Add.prototype.messageNotification({
