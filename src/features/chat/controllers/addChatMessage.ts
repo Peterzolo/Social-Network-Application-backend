@@ -91,20 +91,20 @@ export class Add {
   //   socketIOChatObject.emit('add chat users', chatUsers);
   //   res.status(HTTP_STATUS.OK).json({ message: 'Users added' });
   // }
-  // public async removeChatUsers(req: Request, res: Response): Promise<void> {
-  //   const chatUsers = await messageCache.removeChatUsersFromCache(req.body);
-  //   socketIOChatObject.emit('add chat users', chatUsers);
-  //   res.status(HTTP_STATUS.OK).json({ message: 'Users removed' });
-  // }
+  public async removeChatUsers(req: Request, res: Response): Promise<void> {
+    const chatUsers = await messageCache.removeChatUsersFromCache(req.body);
+    socketIOChatObject.emit('add chat users', chatUsers);
+    res.status(HTTP_STATUS.OK).json({ message: 'Users removed' });
+  }
   private emitSocketIOEvent(data: IMessageData): void {
     socketIOChatObject.emit('message received', data);
     socketIOChatObject.emit('chat list', data);
   }
   private async messageNotification({ currentUser, message, receiverName, receiverId }: IMessageNotification): Promise<void> {
     // const cachedUser: IUserDocument = (await userCache.getUserFromCache(`${receiverId}`)) as IUserDocument;
-    const databasedUser: IUserDocument = (await userService.getUserById(`${receiverId}`)) as IUserDocument;
 
     // TODO add fetch user from database
+    const databasedUser: IUserDocument = (await userService.getUserById(`${receiverId}`)) as IUserDocument;
     if (databasedUser.notifications.messages) {
       const templateParams: INotificationTemplate = {
         username: receiverName,
