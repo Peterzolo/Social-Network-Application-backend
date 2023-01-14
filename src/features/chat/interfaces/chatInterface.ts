@@ -83,8 +83,8 @@ export interface ISenderReceiver {
   receiverName: string;
 }
 
-// export interface IGetMessageFromCache {
-//   index: number;
-//   message: string;
-//   receiver: IChatList;
-// }
+export interface IGetMessageFromCache {
+  index: number;
+  message: string;
+  receiver: IChatList;
+}
