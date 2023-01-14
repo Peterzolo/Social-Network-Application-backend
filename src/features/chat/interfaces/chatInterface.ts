@@ -76,12 +76,12 @@ export interface IChatJobData {
   type?: string;
 }
 
-// export interface ISenderReceiver {
-//   senderId: string;
-//   receiverId: string;
-//   senderName: string;
-//   receiverName: string;
-// }
+export interface ISenderReceiver {
+  senderId: string;
+  receiverId: string;
+  senderName: string;
+  receiverName: string;
+}
 
 // export interface IGetMessageFromCache {
 //   index: number;
