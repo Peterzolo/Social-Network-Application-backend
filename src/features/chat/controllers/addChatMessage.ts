@@ -39,13 +39,13 @@ export class Add {
     const conversationObjectId: ObjectId = !conversationId ? new ObjectId() : new mongoose.Types.ObjectId(conversationId);
     const sender: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
     // TODO - Fetch user from database here
-  //   if (selectedImage.length) {
-  //     const result: UploadApiResponse = (await uploads(req.body.image, req.currentUser!.userId, true, true)) as UploadApiResponse;
-  //     if (!result?.public_id) {
-  //       throw new BadRequestError(result.message);
-  //     }
-  //     fileUrl = `https://res.cloudinary.com/dyamr9ym3/image/upload/v${result.version}/${result.public_id}`;
-  //   }
+    if (selectedImage.length) {
+      const result: UploadApiResponse = (await uploads(req.body.image, req.currentUser!.userId, true, true)) as UploadApiResponse;
+      if (!result?.public_id) {
+        throw new BadRequestError(result.message);
+      }
+      fileUrl = `https://res.cloudinary.com/dyamr9ym3/image/upload/v${result.version}/${result.public_id}`;
+    }
   //   const messageData: IMessageData = {
   //     _id: `${messageObjectId}`,
   //     conversationId: new mongoose.Types.ObjectId(conversationObjectId),
