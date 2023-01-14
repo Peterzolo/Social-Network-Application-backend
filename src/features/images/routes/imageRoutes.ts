@@ -14,8 +14,8 @@ class ImageRoutes {
   public routes(): Router {
     this.router.post('/images/profile-add', authMiddleware.checkAuthentication, Add.prototype.profileImage);
     this.router.post('/images/background-add', authMiddleware.checkAuthentication, Add.prototype.backgroundImage);
-    this.router.delete('/images/:imageId', authMiddleware.checkAuthentication, Delete.prototype.image);
-    this.router.delete('/images/background/:bgImageId', authMiddleware.checkAuthentication, Delete.prototype.backgroundImage);
+    this.router.delete('/images/delete/:imageId', authMiddleware.checkAuthentication, Delete.prototype.image);
+    this.router.delete('/images/background/delete/:bgImageId', authMiddleware.checkAuthentication, Delete.prototype.backgroundImage);
     // this.router.get('/images/:userId', authMiddleware.checkAuthentication, Get.prototype.images);
 
     return this.router;
