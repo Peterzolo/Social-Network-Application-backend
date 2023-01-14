@@ -57,10 +57,10 @@ export interface IChatUsers {
   userTwo: string;
 }
 
-// export interface IChatList {
-//   receiverId: string;
-//   conversationId: string;
-// }
+export interface IChatList {
+  receiverId: string;
+  conversationId: string;
+}
 
 // export interface ITyping {
 //   sender: string;
