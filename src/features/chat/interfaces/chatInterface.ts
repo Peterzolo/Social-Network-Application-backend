@@ -2,26 +2,26 @@ import mongoose, { Document } from 'mongoose';
 import { AuthPayload } from '@auth/interfaces/auth-interface';
 import { IReaction } from '@reaction/interefaces/reactionInterface';
 
-// export interface IMessageDocument extends Document {
-//   _id: mongoose.Types.ObjectId;
-//   conversationId: mongoose.Types.ObjectId;
-//   senderId: mongoose.Types.ObjectId;
-//   receiverId: mongoose.Types.ObjectId;
-//   senderUsername: string;
-//   senderAvatarColor: string;
-//   senderProfilePicture: string;
-//   receiverUsername: string;
-//   receiverAvatarColor: string;
-//   receiverProfilePicture: string;
-//   body: string;
-//   gifUrl: string;
-//   isRead: boolean;
-//   selectedImage: string;
-//   reaction: IReaction[];
-//   createdAt: Date;
-//   deleteForMe: boolean;
-//   deleteForEveryone: boolean;
-// }
+export interface IMessageDocument extends Document {
+  _id: mongoose.Types.ObjectId;
+  conversationId: mongoose.Types.ObjectId;
+  senderId: mongoose.Types.ObjectId;
+  receiverId: mongoose.Types.ObjectId;
+  senderUsername: string;
+  senderAvatarColor: string;
+  senderProfilePicture: string;
+  receiverUsername: string;
+  receiverAvatarColor: string;
+  receiverProfilePicture: string;
+  body: string;
+  gifUrl: string;
+  isRead: boolean;
+  selectedImage: string;
+  reaction: IReaction[];
+  createdAt: Date;
+  deleteForMe: boolean;
+  deleteForEveryone: boolean;
+}
 
 // export interface IMessageData {
 //   _id: string | mongoose.Types.ObjectId;
