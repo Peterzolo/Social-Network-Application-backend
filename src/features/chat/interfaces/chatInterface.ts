@@ -44,13 +44,13 @@ export interface IMessageData {
   deleteForEveryone: boolean;
 }
 
-// export interface IMessageNotification {
-//   currentUser: AuthPayload;
-//   message: string;
-//   receiverName: string;
-//   receiverId: string;
-//   messageData: IMessageData;
-// }
+export interface IMessageNotification {
+  currentUser: AuthPayload;
+  message: string;
+  receiverName: string;
+  receiverId: string;
+  messageData: IMessageData;
+}
 
 // export interface IChatUsers {
 //   userOne: string;
