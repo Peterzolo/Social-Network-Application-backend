@@ -62,10 +62,10 @@ export interface IChatList {
   conversationId: string;
 }
 
-// export interface ITyping {
-//   sender: string;
-//   receiver: string;
-// }
+export interface ITyping {
+  sender: string;
+  receiver: string;
+}
 
 // export interface IChatJobData {
 //   senderId?: mongoose.Types.ObjectId | string;
