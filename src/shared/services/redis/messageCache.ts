@@ -3,7 +3,7 @@ import Logger from 'bunyan';
 import { findIndex, find, filter, remove } from 'lodash';
 import { config } from '@root/configuration';
 import { ServerError } from '@global/helpers/customErrorHandler';
-import { IMessageData, IChatUsers, IChatList, IGetMessageFromCache } from '@chat/interfaces/chatInterface
+import { IMessageData, IChatUsers, IChatList, IGetMessageFromCache } from '@chat/interfaces/chatInterface';
 import { Helpers } from '@global/helpers';
 import { IReaction } from '@reaction/interefaces/reactionInterface';
 
