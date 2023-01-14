@@ -21,24 +21,24 @@ const userCache: UserCache = new UserCache();
 // const messageCache: MessageCache = new MessageCache();
 
 export class Add {
-  // @joiValidation(addChatSchema)
-  // public async message(req: Request, res: Response): Promise<void> {
-  //   const {
-  //     conversationId,
-  //     receiverId,
-  //     receiverUsername,
-  //     receiverAvatarColor,
-  //     receiverProfilePicture,
-  //     body,
-  //     gifUrl,
-  //     isRead,
-  //     selectedImage
-  //   } = req.body;
-  //   let fileUrl = '';
-  //   const messageObjectId: ObjectId = new ObjectId();
-  //   const conversationObjectId: ObjectId = !conversationId ? new ObjectId() : new mongoose.Types.ObjectId(conversationId);
-  //   const sender: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
-  //   // TODO - Fetch user from database here
+  @joiValidation(addChatSchema)
+  public async message(req: Request, res: Response): Promise<void> {
+    const {
+      conversationId,
+      receiverId,
+      receiverUsername,
+      receiverAvatarColor,
+      receiverProfilePicture,
+      body,
+      gifUrl,
+      isRead,
+      selectedImage
+    } = req.body;
+    let fileUrl = '';
+    const messageObjectId: ObjectId = new ObjectId();
+    const conversationObjectId: ObjectId = !conversationId ? new ObjectId() : new mongoose.Types.ObjectId(conversationId);
+    const sender: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
+    // TODO - Fetch user from database here
   //   if (selectedImage.length) {
   //     const result: UploadApiResponse = (await uploads(req.body.image, req.currentUser!.userId, true, true)) as UploadApiResponse;
   //     if (!result?.public_id) {
