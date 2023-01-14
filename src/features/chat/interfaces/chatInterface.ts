@@ -52,10 +52,10 @@ export interface IMessageNotification {
   messageData: IMessageData;
 }
 
-// export interface IChatUsers {
-//   userOne: string;
-//   userTwo: string;
-// }
+export interface IChatUsers {
+  userOne: string;
+  userTwo: string;
+}
 
 // export interface IChatList {
 //   receiverId: string;
