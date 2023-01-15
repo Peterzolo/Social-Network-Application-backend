@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import mongoose from 'mongoose';
-import { MessageCache } from '@service/redis/message.cache';
-import { chatService } from '@service/db/chat.service';
-import { IMessageData } from '@chat/interfaces/chat.interface';
+import { MessageCache } from '@service/redis/messageCache';
+import { chatService } from '@service/db/chatService';
+import { IMessageData } from '@chat/interfaces/chatInterface';
 
 const messageCache: MessageCache = new MessageCache();
 
