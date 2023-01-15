@@ -14,25 +14,25 @@ class ChatService {
         receiverId: data.receiverId
       });
     }
-  //   await MessageModel.create({
-  //     _id: data._id,
-  //     conversationId: data.conversationId,
-  //     receiverId: data.receiverId,
-  //     receiverUsername: data.receiverUsername,
-  //     receiverAvatarColor: data.receiverAvatarColor,
-  //     receiverProfilePicture: data.receiverProfilePicture,
-  //     senderUsername: data.senderUsername,
-  //     senderId: data.senderId,
-  //     senderAvatarColor: data.senderAvatarColor,
-  //     senderProfilePicture: data.senderProfilePicture,
-  //     body: data.body,
-  //     isRead: data.isRead,
-  //     gifUrl: data.gifUrl,
-  //     selectedImage: data.selectedImage,
-  //     reaction: data.reaction,
-  //     createdAt: data.createdAt
-  //   });
-  // }
+    await MessageModel.create({
+      _id: data._id,
+      conversationId: data.conversationId,
+      receiverId: data.receiverId,
+      receiverUsername: data.receiverUsername,
+      receiverAvatarColor: data.receiverAvatarColor,
+      receiverProfilePicture: data.receiverProfilePicture,
+      senderUsername: data.senderUsername,
+      senderId: data.senderId,
+      senderAvatarColor: data.senderAvatarColor,
+      senderProfilePicture: data.senderProfilePicture,
+      body: data.body,
+      isRead: data.isRead,
+      gifUrl: data.gifUrl,
+      selectedImage: data.selectedImage,
+      reaction: data.reaction,
+      createdAt: data.createdAt
+    });
+  }
   // public async getUserConversationList(userId: ObjectId): Promise<IMessageData[]> {
   //   const messages: IMessageData[] = await MessageModel.aggregate([
   //     { $match: { $or: [{ senderId: userId }, { receiverId: userId }] } },
