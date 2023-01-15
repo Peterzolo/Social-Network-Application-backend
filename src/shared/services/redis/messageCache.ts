@@ -88,24 +88,24 @@ export class MessageCache extends BaseCache {
     }
   }
 
-  // public async getUserConversationList(key: string): Promise<IMessageData[]> {
-  //   try {
-  //     if (!this.client.isOpen) {
-  //       await this.client.connect();
-  //     }
-  //     const userChatList: string[] = await this.client.LRANGE(`chatList:${key}`, 0, -1);
-  //     const conversationChatList: IMessageData[] = [];
-  //     for (const item of userChatList) {
-  //       const chatItem: IChatList = Helpers.parseJson(item) as IChatList;
-  //       const lastMessage: string = (await this.client.LINDEX(`messages:${chatItem.conversationId}`, -1)) as string;
-  //       conversationChatList.push(Helpers.parseJson(lastMessage));
-  //     }
-  //     return conversationChatList;
-  //   } catch (error) {
-  //     log.error(error);
-  //     throw new ServerError('Server error. Try again.');
-  //   }
-  // }
+  public async getUserConversationList(key: string): Promise<IMessageData[]> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+      const userChatList: string[] = await this.client.LRANGE(`chatList:${key}`, 0, -1);
+      const conversationChatList: IMessageData[] = [];
+      for (const item of userChatList) {
+        const chatItem: IChatList = Helpers.parseJson(item) as IChatList;
+        const lastMessage: string = (await this.client.LINDEX(`messages:${chatItem.conversationId}`, -1)) as string;
+        conversationChatList.push(Helpers.parseJson(lastMessage));
+      }
+      return conversationChatList;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
 
   // public async getChatMessagesFromCache(senderId: string, receiverId: string): Promise<IMessageData[]> {
   //   try {
