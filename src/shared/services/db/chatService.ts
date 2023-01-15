@@ -5,15 +5,15 @@ import { MessageModel } from '@chat/models/chatSchema';
 import { ObjectId } from 'mongodb';
 
 class ChatService {
-  // public async addMessageToDB(data: IMessageData): Promise<void> {
-  //   const conversation: IConversationDocument[] = await ConversationModel.find({ _id: data?.conversationId }).exec();
-  //   if (conversation.length === 0) {
-  //     await ConversationModel.create({
-  //       _id: data?.conversationId,
-  //       senderId: data.senderId,
-  //       receiverId: data.receiverId
-  //     });
-  //   }
+  public async addMessageToDB(data: IMessageData): Promise<void> {
+    const conversation: IConversationDocument[] = await ConversationModel.find({ _id: data?.conversationId }).exec();
+    if (conversation.length === 0) {
+      await ConversationModel.create({
+        _id: data?.conversationId,
+        senderId: data.senderId,
+        receiverId: data.receiverId
+      });
+    }
   //   await MessageModel.create({
   //     _id: data._id,
   //     conversationId: data.conversationId,
