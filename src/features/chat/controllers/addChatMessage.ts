@@ -18,6 +18,7 @@ import { userService } from '@service/db/userService';
 import { MessageCache } from '@service/redis/messageCache';
 import { chatQueue } from '@service/queues/chatQueue';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const userCache: UserCache = new UserCache();
 const messageCache: MessageCache = new MessageCache();
 
