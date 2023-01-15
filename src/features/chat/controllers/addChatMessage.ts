@@ -91,11 +91,11 @@ export class Add {
     socketIOChatObject.emit('add chat users', chatUsers);
     res.status(HTTP_STATUS.OK).json({ message: 'Users added' });
   }
-  // public async removeChatUsers(req: Request, res: Response): Promise<void> {
-  //   const chatUsers = await messageCache.removeChatUsersFromCache(req.body);
-  //   socketIOChatObject.emit('add chat users', chatUsers);
-  //   res.status(HTTP_STATUS.OK).json({ message: 'Users removed' });
-  // }
+  public async removeChatUsers(req: Request, res: Response): Promise<void> {
+    const chatUsers = await messageCache.removeChatUsersFromCache(req.body);
+    socketIOChatObject.emit('add chat users', chatUsers);
+    res.status(HTTP_STATUS.OK).json({ message: 'Users removed' });
+  }
   private emitSocketIOEvent(data: IMessageData): void {
     socketIOChatObject.emit('message received', data);
     socketIOChatObject.emit('chat list', data);
