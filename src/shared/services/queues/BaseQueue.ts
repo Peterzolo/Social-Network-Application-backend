@@ -11,8 +11,8 @@ import { IReactionJob } from '@reaction/interefaces/reactionInterface';
 import { ICommentJob } from '@comment/interfaces/commentInterface';
 import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/followersInterface.ts';
 import { INotificationJobData } from '@notification/interfaces/notificationInterface';
+import { IChatJobData, IMessageData } from '@chat/interfaces/chatInterface';
 // import { IFileImageJobData } from '@image/interfaces/image.interface';
-// import { IChatJobData, IMessageData } from '@chat/interfaces/chat.interface';
 
 type IBaseJobData =
   | IAuthJob
@@ -22,10 +22,10 @@ type IBaseJobData =
   | ICommentJob
   | IFollowerJobData
   | IBlockedUserJobData
-  | INotificationJobData;
+  | INotificationJobData
+  | IChatJobData
+  | IMessageData;
 // | IFileImageJobData
-// | IChatJobData
-// | IMessageData
 // | IUserJob;
 
 let bullAdapters: BullAdapter[] = [];
