@@ -67,26 +67,26 @@ export class MessageCache extends BaseCache {
     }
   }
 
-  // public async removeChatUsersFromCache(value: IChatUsers): Promise<IChatUsers[]> {
-  //   try {
-  //     if (!this.client.isOpen) {
-  //       await this.client.connect();
-  //     }
-  //     const users: IChatUsers[] = await this.getChatUsersList();
-  //     const usersIndex: number = findIndex(users, (listItem: IChatUsers) => JSON.stringify(listItem) === JSON.stringify(value));
-  //     let chatUsers: IChatUsers[] = [];
-  //     if (usersIndex > -1) {
-  //       await this.client.LREM('chatUsers', usersIndex, JSON.stringify(value));
-  //       chatUsers = await this.getChatUsersList();
-  //     } else {
-  //       chatUsers = users;
-  //     }
-  //     return chatUsers;
-  //   } catch (error) {
-  //     log.error(error);
-  //     throw new ServerError('Server error. Try again.');
-  //   }
-  // }
+  public async removeChatUsersFromCache(value: IChatUsers): Promise<IChatUsers[]> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+      const users: IChatUsers[] = await this.getChatUsersList();
+      const usersIndex: number = findIndex(users, (listItem: IChatUsers) => JSON.stringify(listItem) === JSON.stringify(value));
+      let chatUsers: IChatUsers[] = [];
+      if (usersIndex > -1) {
+        await this.client.LREM('chatUsers', usersIndex, JSON.stringify(value));
+        chatUsers = await this.getChatUsersList();
+      } else {
+        chatUsers = users;
+      }
+      return chatUsers;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
 
   // public async getUserConversationList(key: string): Promise<IMessageData[]> {
   //   try {
