@@ -46,26 +46,26 @@ export class MessageCache extends BaseCache {
     }
   }
 
-  // public async addChatUsersToCache(value: IChatUsers): Promise<IChatUsers[]> {
-  //   try {
-  //     if (!this.client.isOpen) {
-  //       await this.client.connect();
-  //     }
-  //     const users: IChatUsers[] = await this.getChatUsersList();
-  //     const usersIndex: number = findIndex(users, (listItem: IChatUsers) => JSON.stringify(listItem) === JSON.stringify(value));
-  //     let chatUsers: IChatUsers[] = [];
-  //     if (usersIndex === -1) {
-  //       await this.client.RPUSH('chatUsers', JSON.stringify(value));
-  //       chatUsers = await this.getChatUsersList();
-  //     } else {
-  //       chatUsers = users;
-  //     }
-  //     return chatUsers;
-  //   } catch (error) {
-  //     log.error(error);
-  //     throw new ServerError('Server error. Try again.');
-  //   }
-  // }
+  public async addChatUsersToCache(value: IChatUsers): Promise<IChatUsers[]> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+      const users: IChatUsers[] = await this.getChatUsersList();
+      const usersIndex: number = findIndex(users, (listItem: IChatUsers) => JSON.stringify(listItem) === JSON.stringify(value));
+      let chatUsers: IChatUsers[] = [];
+      if (usersIndex === -1) {
+        await this.client.RPUSH('chatUsers', JSON.stringify(value));
+        chatUsers = await this.getChatUsersList();
+      } else {
+        chatUsers = users;
+      }
+      return chatUsers;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
 
   // public async removeChatUsersFromCache(value: IChatUsers): Promise<IChatUsers[]> {
   //   try {
@@ -213,15 +213,15 @@ export class MessageCache extends BaseCache {
   //   }
   // }
 
-  // private async getChatUsersList(): Promise<IChatUsers[]> {
-  //   const chatUsersList: IChatUsers[] = [];
-  //   const chatUsers = await this.client.LRANGE('chatUsers', 0, -1);
-  //   for (const item of chatUsers) {
-  //     const chatUser: IChatUsers = Helpers.parseJson(item) as IChatUsers;
-  //     chatUsersList.push(chatUser);
-  //   }
-  //   return chatUsersList;
-  // }
+  private async getChatUsersList(): Promise<IChatUsers[]> {
+    const chatUsersList: IChatUsers[] = [];
+    const chatUsers = await this.client.LRANGE('chatUsers', 0, -1);
+    for (const item of chatUsers) {
+      const chatUser: IChatUsers = Helpers.parseJson(item) as IChatUsers;
+      chatUsersList.push(chatUser);
+    }
+    return chatUsersList;
+  }
 
   // private async getMessage(senderId: string, receiverId: string, messageId: string): Promise<IGetMessageFromCache> {
   //   const userChatList: string[] = await this.client.LRANGE(`chatList:${senderId}`, 0, -1);
