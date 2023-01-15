@@ -16,7 +16,7 @@ import { notificationTemplate } from '@service/email/notification-template/index
 import { emailQueue } from '@service/queues/emailQueues';
 import { userService } from '@service/db/userService';
 import { MessageCache } from '@service/redis/messageCache';
-// import { chatQueue } from '@service/queues/chat.queue';
+import { chatQueue } from '@service/queues/chatQueue';
 
 const userCache: UserCache = new UserCache();
 const messageCache: MessageCache = new MessageCache();
@@ -41,7 +41,6 @@ export class Add {
     // const sender: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
     const sender: IUserDocument = (await userService.getUserById(`${receiverId}`)) as IUserDocument;
 
-    // TODO - Fetch user from database here
     if (selectedImage.length) {
       const result: UploadApiResponse = (await uploads(req.body.image, req.currentUser!.userId, true, true)) as UploadApiResponse;
       if (!result?.public_id) {
@@ -83,7 +82,7 @@ export class Add {
     await messageCache.addChatListToCache(`${req.currentUser!.userId}`, `${receiverId}`, `${conversationObjectId}`);
     await messageCache.addChatListToCache(`${receiverId}`, `${req.currentUser!.userId}`, `${conversationObjectId}`);
     await messageCache.addChatMessageToCache(`${conversationObjectId}`, messageData);
-    // chatQueue.addChatJob('addChatMessageToDB', messageData);
+    chatQueue.addChatJob('addChatMessageToDB', messageData);
     res.status(HTTP_STATUS.OK).json({ message: 'Message added', conversationId: conversationObjectId });
   }
   public async addChatUsers(req: Request, res: Response): Promise<void> {
