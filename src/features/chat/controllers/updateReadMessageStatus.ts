@@ -10,7 +10,7 @@ import { markChatSchema } from '@chat/schemes/chatValidateSchema';
 
 const messageCache: MessageCache = new MessageCache();
 
-export class UpdateRead {
+export class Update {
   @joiValidation(markChatSchema)
   public async messageReadStatus(req: Request, res: Response): Promise<void> {
     const { senderId, receiverId } = req.body;
