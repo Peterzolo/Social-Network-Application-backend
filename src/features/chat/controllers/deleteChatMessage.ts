@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import mongoose from 'mongoose';
-import { MessageCache } from '@service/redis/message.cache';
-import { IMessageData } from '@chat/interfaces/chat.interface';
-import { socketIOChatObject } from '@socket/chat';
-import { chatQueue } from '@service/queues/chat.queue';
+import { MessageCache } from '@service/redis/messageCache';
+import { IMessageData } from '@chat/interfaces/chatInterface';
+import { socketIOChatObject } from '@socket/chatSocket';
+import { chatQueue } from '@service/queues/chatQueue';
 
 const messageCache: MessageCache = new MessageCache();
 
