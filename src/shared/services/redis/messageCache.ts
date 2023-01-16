@@ -223,14 +223,14 @@ export class MessageCache extends BaseCache {
     return chatUsersList;
   }
 
-  // private async getMessage(senderId: string, receiverId: string, messageId: string): Promise<IGetMessageFromCache> {
-  //   const userChatList: string[] = await this.client.LRANGE(`chatList:${senderId}`, 0, -1);
-  //   const receiver: string = find(userChatList, (listItem: string) => listItem.includes(receiverId)) as string;
-  //   const parsedReceiver: IChatList = Helpers.parseJson(receiver) as IChatList;
-  //   const messages: string[] = await this.client.LRANGE(`messages:${parsedReceiver.conversationId}`, 0, -1);
-  //   const message: string = find(messages, (listItem: string) => listItem.includes(messageId)) as string;
-  //   const index: number = findIndex(messages, (listItem: string) => listItem.includes(messageId));
+  private async getMessage(senderId: string, receiverId: string, messageId: string): Promise<IGetMessageFromCache> {
+    const userChatList: string[] = await this.client.LRANGE(`chatList:${senderId}`, 0, -1);
+    const receiver: string = find(userChatList, (listItem: string) => listItem.includes(receiverId)) as string;
+    const parsedReceiver: IChatList = Helpers.parseJson(receiver) as IChatList;
+    const messages: string[] = await this.client.LRANGE(`messages:${parsedReceiver.conversationId}`, 0, -1);
+    const message: string = find(messages, (listItem: string) => listItem.includes(messageId)) as string;
+    const index: number = findIndex(messages, (listItem: string) => listItem.includes(messageId));
 
-  //   return { index, message, receiver: parsedReceiver };
-  // }
+    return { index, message, receiver: parsedReceiver };
+  }
 }
