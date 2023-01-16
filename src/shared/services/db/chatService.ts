@@ -76,13 +76,13 @@ class ChatService {
     const messages: IMessageData[] = await MessageModel.aggregate([{ $match: query }, { $sort: sort }]);
     return messages;
   }
-  // public async markMessageAsDeleted(messageId: string, type: string): Promise<void> {
-  //   if (type === 'deleteForMe') {
-  //     await MessageModel.updateOne({ _id: messageId }, { $set: { deleteForMe: true } }).exec();
-  //   } else {
-  //     await MessageModel.updateOne({ _id: messageId }, { $set: { deleteForMe: true, deleteForEveryone: true } }).exec();
-  //   }
-  // }
+  public async markMessageAsDeleted(messageId: string, type: string): Promise<void> {
+    if (type === 'deleteForMe') {
+      await MessageModel.updateOne({ _id: messageId }, { $set: { deleteForMe: true } }).exec();
+    } else {
+      await MessageModel.updateOne({ _id: messageId }, { $set: { deleteForMe: true, deleteForEveryone: true } }).exec();
+    }
+  }
   // public async markMessagesAsRead(senderId: ObjectId, receiverId: ObjectId): Promise<void> {
   //   const query = {
   //     $or: [
