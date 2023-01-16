@@ -132,28 +132,28 @@ export class MessageCache extends BaseCache {
     }
   }
 
-  // public async markMessageAsDeleted(senderId: string, receiverId: string, messageId: string, type: string): Promise<IMessageData> {
-  //   try {
-  //     if (!this.client.isOpen) {
-  //       await this.client.connect();
-  //     }
-  //     const { index, message, receiver } = await this.getMessage(senderId, receiverId, messageId);
-  //     const chatItem = Helpers.parseJson(message) as IMessageData;
-  //     if (type === 'deleteForMe') {
-  //       chatItem.deleteForMe = true;
-  //     } else {
-  //       chatItem.deleteForMe = true;
-  //       chatItem.deleteForEveryone = true;
-  //     }
-  //     await this.client.LSET(`messages:${receiver.conversationId}`, index, JSON.stringify(chatItem));
+  public async markMessageAsDeleted(senderId: string, receiverId: string, messageId: string, type: string): Promise<IMessageData> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+      const { index, message, receiver } = await this.getMessage(senderId, receiverId, messageId);
+      const chatItem = Helpers.parseJson(message) as IMessageData;
+      if (type === 'deleteForMe') {
+        chatItem.deleteForMe = true;
+      } else {
+        chatItem.deleteForMe = true;
+        chatItem.deleteForEveryone = true;
+      }
+      await this.client.LSET(`messages:${receiver.conversationId}`, index, JSON.stringify(chatItem));
 
-  //     const lastMessage: string = (await this.client.LINDEX(`messages:${receiver.conversationId}`, index)) as string;
-  //     return Helpers.parseJson(lastMessage) as IMessageData;
-  //   } catch (error) {
-  //     log.error(error);
-  //     throw new ServerError('Server error. Try again.');
-  //   }
-  // }
+      const lastMessage: string = (await this.client.LINDEX(`messages:${receiver.conversationId}`, index)) as string;
+      return Helpers.parseJson(lastMessage) as IMessageData;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
 
   // public async updateChatMessages(senderId: string, receiverId: string): Promise<IMessageData> {
   //   try {
