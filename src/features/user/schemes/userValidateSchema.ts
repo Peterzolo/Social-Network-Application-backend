@@ -32,11 +32,11 @@ const changePasswordSchema: ObjectSchema = Joi.object().keys({
   })
 });
 
-// const notificationSettingsSchema: ObjectSchema = Joi.object().keys({
-//   messages: Joi.boolean().optional(),
-//   reactions: Joi.boolean().optional(),
-//   comments: Joi.boolean().optional(),
-//   follows: Joi.boolean().optional()
-// });
+const notificationSettingsSchema: ObjectSchema = Joi.object().keys({
+  messages: Joi.boolean().optional(),
+  reactions: Joi.boolean().optional(),
+  comments: Joi.boolean().optional(),
+  follows: Joi.boolean().optional()
+});
 
 // export { basicInfoSchema, socialLinksSchema, changePasswordSchema, notificationSettingsSchema };
