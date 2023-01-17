@@ -33,11 +33,11 @@ export class SocketIOUserHandler {
     });
   }
 
-  // private addClientToMap(username: string, socketId: string): void {
-  //   if (!connectedUsersMap.has(username)) {
-  //     connectedUsersMap.set(username, socketId);
-  //   }
-  // }
+  private addClientToMap(username: string, socketId: string): void {
+    if (!connectedUsersMap.has(username)) {
+      connectedUsersMap.set(username, socketId);
+    }
+  }
 
   // private removeClientFromMap(socketId: string): void {
   //   if (Array.from(connectedUsersMap.values()).includes(socketId)) {
