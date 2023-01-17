@@ -4,7 +4,7 @@ import { Server, Socket } from 'socket.io';
 export let socketIOUserObject: Server;
 export const connectedUsersMap: Map<string, string> = new Map();
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// let users: string[] = [];
+let users: string[] = [];
 
 export class SocketIOUserHandler {
   private io: Server;
@@ -16,11 +16,11 @@ export class SocketIOUserHandler {
 
   public listen(): void {
     this.io.on('connection', (socket: Socket) => {
-      // socket.on('setup', (data: ILogin) => {
-      //   this.addClientToMap(data.userId, socket.id);
-      //   this.addUser(data.userId);
-      //   this.io.emit('user online', users);
-      // });
+      socket.on('setup', (data: ILogin) => {
+        this.addClientToMap(data.userId, socket.id);
+        this.addUser(data.userId);
+        this.io.emit('user online', users);
+      });
       // socket.on('block user', (data: ISocketData) => {
       //   this.io.emit('blocked user id', data);
       // });
