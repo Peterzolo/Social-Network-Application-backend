@@ -21,15 +21,15 @@ export class SocketIOUserHandler {
         this.addUser(data.userId);
         this.io.emit('user online', users);
       });
-      // socket.on('block user', (data: ISocketData) => {
-      //   this.io.emit('blocked user id', data);
-      // });
-      // socket.on('unblock user', (data: ISocketData) => {
-      //   this.io.emit('unblocked user id', data);
-      // });
-      // socket.on('disconnect', () => {
-      //   this.removeClientFromMap(socket.id);
-      // });
+      socket.on('block user', (data: ISocketData) => {
+        this.io.emit('blocked user id', data);
+      });
+      socket.on('unblock user', (data: ISocketData) => {
+        this.io.emit('unblocked user id', data);
+      });
+      socket.on('disconnect', () => {
+        this.removeClientFromMap(socket.id);
+      });
     });
   }
 
