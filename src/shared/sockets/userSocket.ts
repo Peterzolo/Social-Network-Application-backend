@@ -3,7 +3,6 @@ import { Server, Socket } from 'socket.io';
 
 export let socketIOUserObject: Server;
 export const connectedUsersMap: Map<string, string> = new Map();
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let users: string[] = [];
 
 export class SocketIOUserHandler {
