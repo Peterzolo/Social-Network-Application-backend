@@ -8,8 +8,8 @@ import { chatQueue } from '@service/queues/chatQueue';
 
 const messageCache: MessageCache = new MessageCache();
 
-export class Message {
-  public async reaction(req: Request, res: Response): Promise<void> {
+export class MessageReaction {
+  public async add(req: Request, res: Response): Promise<void> {
     const { conversationId, messageId, reaction, type } = req.body;
     const updatedMessage: IMessageData = await messageCache.updateMessageReaction(
       `${conversationId}`,
