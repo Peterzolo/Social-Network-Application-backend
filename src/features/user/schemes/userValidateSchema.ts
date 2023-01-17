@@ -7,12 +7,12 @@ const basicInfoSchema: ObjectSchema = Joi.object().keys({
   location: Joi.string().optional().allow(null, '')
 });
 
-// const socialLinksSchema: ObjectSchema = Joi.object().keys({
-//   facebook: Joi.string().optional().allow(null, ''),
-//   instagram: Joi.string().optional().allow(null, ''),
-//   twitter: Joi.string().optional().allow(null, ''),
-//   youtube: Joi.string().optional().allow(null, '')
-// });
+const socialLinksSchema: ObjectSchema = Joi.object().keys({
+  facebook: Joi.string().optional().allow(null, ''),
+  instagram: Joi.string().optional().allow(null, ''),
+  twitter: Joi.string().optional().allow(null, ''),
+  youtube: Joi.string().optional().allow(null, '')
+});
 
 // const changePasswordSchema: ObjectSchema = Joi.object().keys({
 //   currentPassword: Joi.string().required().min(4).max(8).messages({
