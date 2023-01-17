@@ -50,10 +50,10 @@ export class SocketIOUserHandler {
     }
   }
 
-  // private addUser(username: string): void {
-  //   users.push(username);
-  //   users = [...new Set(users)];
-  // }
+  private addUser(username: string): void {
+    users.push(username);
+    users = [...new Set(users)];
+  }
 
   // private removeUser(username: string): void {
   //   users = users.filter((name: string) => name != username);
