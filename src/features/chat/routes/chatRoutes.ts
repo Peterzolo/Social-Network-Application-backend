@@ -4,8 +4,7 @@ import { Add } from '@chat/controllers/addChatMessage';
 import { Get } from '@chat/controllers/fetchChatList';
 import { Delete } from '@chat/controllers/deleteChatMessage';
 import { Update } from '@chat/controllers/updateReadMessageStatus';
-
-// import { Message } from '@chat/controllers/add-message-reaction';
+import { MessageReaction } from '@chat/controllers/addMessageReaction';
 
 class ChatRoutes {
   private router: Router;
@@ -21,7 +20,7 @@ class ChatRoutes {
     this.router.get('/chat/message/conversation-list', authMiddleware.checkAuthentication, Get.prototype.conversationList);
     this.router.get('/chat/message/user/:receiverId', authMiddleware.checkAuthentication, Get.prototype.messages);
     this.router.put('/chat/message/mark-as-read', authMiddleware.checkAuthentication, Update.prototype.messageReadStatus);
-    // this.router.put('/chat/message/reaction', authMiddleware.checkAuthentication, Message.prototype.reaction);
+    this.router.put('/chat/message/reaction', authMiddleware.checkAuthentication, MessageReaction.prototype.add);
     this.router.delete(
       '/chat/message/mark-as-deleted/:messageId/:senderId/:receiverId/:type',
       authMiddleware.checkAuthentication,
