@@ -23,6 +23,7 @@ interface IUserAll {
 
 const postCache: PostCache = new PostCache();
 const userCache: UserCache = new UserCache();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const followerCache: FollowerCache = new FollowerCache();
 
 export class Get {
