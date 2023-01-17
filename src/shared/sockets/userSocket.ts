@@ -55,7 +55,7 @@ export class SocketIOUserHandler {
     users = [...new Set(users)];
   }
 
-  // private removeUser(username: string): void {
-  //   users = users.filter((name: string) => name != username);
-  // }
+  private removeUser(username: string): void {
+    users = users.filter((name: string) => name != username);
+  }
 }
