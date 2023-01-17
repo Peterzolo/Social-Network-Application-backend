@@ -97,7 +97,7 @@ class ChatService {
     if (type === 'add') {
       await MessageModel.updateOne({ _id: messageId }, { $push: { reaction: { senderName, type: reaction } } }).exec();
     } else {
-      await MessageModel.updateOne({ _id: messageId }, { $pull: { reaction: { senderName } } }).exec();
+      await MessageModel.updateOne({ _id: messageId }, { $pull: { reaction: { senderName, type: reaction } } }).exec();
     }
   }
 }
