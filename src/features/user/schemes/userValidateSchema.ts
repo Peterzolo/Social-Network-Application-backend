@@ -1,11 +1,11 @@
 import Joi, { ObjectSchema } from 'joi';
 
-// const basicInfoSchema: ObjectSchema = Joi.object().keys({
-//   quote: Joi.string().optional().allow(null, ''),
-//   work: Joi.string().optional().allow(null, ''),
-//   school: Joi.string().optional().allow(null, ''),
-//   location: Joi.string().optional().allow(null, '')
-// });
+const basicInfoSchema: ObjectSchema = Joi.object().keys({
+  quote: Joi.string().optional().allow(null, ''),
+  work: Joi.string().optional().allow(null, ''),
+  school: Joi.string().optional().allow(null, ''),
+  location: Joi.string().optional().allow(null, '')
+});
 
 // const socialLinksSchema: ObjectSchema = Joi.object().keys({
 //   facebook: Joi.string().optional().allow(null, ''),
