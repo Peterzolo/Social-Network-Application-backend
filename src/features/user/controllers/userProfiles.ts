@@ -57,7 +57,6 @@ export class Get {
     users = await userService.getAllUsers(userId, skip, limit);
     // }
     const totalUsers: number = await Get.prototype.usersCount(type);
-
     return { totalUsers, users };
   }
 
@@ -82,10 +81,10 @@ export class Get {
   public async profileAndPosts(req: Request, res: Response): Promise<void> {
     const { userId, username, uId } = req.params;
     const userName: string = Helpers.firstLetterUppercase(username);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const cachedUser: IUserDocument = (await userCache.getUserFromCache(userId)) as IUserDocument;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const cachedUserPosts: IPostDocument[] = await postCache.getUserPostsFromCache('post', parseInt(uId, 10));
+
+    // const cachedUser: IUserDocument = (await userCache.getUserFromCache(userId)) as IUserDocument;
+
+    // const cachedUserPosts: IPostDocument[] = await postCache.getUserPostsFromCache('post', parseInt(uId, 10));
 
     // const existingUser: IUserDocument = cachedUser ? cachedUser : await userService.getUserById(userId);
     const existingUser: IUserDocument = await userService.getUserById(userId);
