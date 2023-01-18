@@ -138,7 +138,6 @@ export class UserCache extends BaseCache {
       }
       return userReplies;
     } catch (error) {
-      console.log('ERROR', error);
       log.error(error);
       throw new ServerError('Server error. Try again.');
     }
