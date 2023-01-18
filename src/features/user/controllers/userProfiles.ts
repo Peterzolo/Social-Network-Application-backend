@@ -47,7 +47,7 @@ export class Get {
     let users;
     let type = '';
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const cachedUsers: IUserDocument[] = (await userCache.getUsersFromCache(newSkip, limit, userId)) as IUserDocument[];
+    // const cachedUsers: IUserDocument[] = (await userCache.getUsersFromCache(newSkip, limit, userId)) as IUserDocument[];
     // if (cachedUsers.length) {
     //   type = 'redis';
     //   users = cachedUsers;
@@ -57,7 +57,8 @@ export class Get {
     users = await userService.getAllUsers(userId, skip, limit);
     // }
     const totalUsers: number = await Get.prototype.usersCount(type);
-    return { users, totalUsers };
+
+    return { totalUsers, users };
   }
 
   // Get loggedin  user profile
