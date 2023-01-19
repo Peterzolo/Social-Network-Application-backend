@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { Helpers } from '@global/helpers/helpers';
-import { userService } from '@service/db/user.service';
+import { Helpers } from '@global/helpers';
+import { userService } from '@service/db/userService';
 import { ISearchUser } from '@user/interfaces/user.interface';
 
 // export class Search {
