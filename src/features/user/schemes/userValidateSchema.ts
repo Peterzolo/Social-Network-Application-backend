@@ -21,10 +21,10 @@ const changePasswordSchema: ObjectSchema = Joi.object().keys({
     'string.max': 'Password cannot be longer than 25 characters {#limit}',
     'string.empty': 'Password is a required field'
   }),
-  newPassword: Joi.string().required().min(4).max(8).messages({
+  newPassword: Joi.string().required().min(8).max(25).messages({
     'string.base': 'Password should be a type of string',
-    'string.min': 'Password must have a minimum length of {#limit}',
-    'string.max': 'Password should have a maximum length of {#limit}',
+    'string.min': 'Password must be at least 8 characters long {#limit}',
+    'string.max': 'Password cannot be longer than 25 characters {#limit}',
     'string.empty': 'Password is a required field'
   }),
   confirmPassword: Joi.any().equal(Joi.ref('newPassword')).required().messages({
