@@ -13,12 +13,12 @@ import { resetPasswordTemplate } from '@service/email/email-template/password-re
 import { emailQueue } from '@service/queues/emailQueues';
 
 export class Update {
-  // @joiValidation(changePasswordSchema)
-  // public async password(req: Request, res: Response): Promise<void> {
-  //   const { currentPassword, newPassword, confirmPassword } = req.body;
-  //   if (newPassword !== confirmPassword) {
-  //     throw new BadRequestError('Passwords do not match.');
-  //   }
+  @joiValidation(changePasswordSchema)
+  public async password(req: Request, res: Response): Promise<void> {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    if (newPassword !== confirmPassword) {
+      throw new BadRequestError('Passwords do not match.');
+    }
   //   const existingUser: IAuthDocument = await authService.getAuthUserByUsername(req.currentUser!.username);
   //   const passwordsMatch: boolean = await existingUser.comparePassword(currentPassword);
   //   if (!passwordsMatch) {
