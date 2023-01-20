@@ -1,7 +1,8 @@
 import express, { Router } from 'express';
 import { authMiddleware } from '@global/helpers/authMiddleware';
 import { Get } from '@user/controllers/userProfiles';
-// import { Search } from '@user/controllers/search-user';
+import { Search } from '@user/controllers/userSearch';
+
 // import { Update } from '@user/controllers/change-password';
 // import { Edit } from '@user/controllers/update-basic-info';
 // import { UpdateSettings } from '@user/controllers/update-settings';

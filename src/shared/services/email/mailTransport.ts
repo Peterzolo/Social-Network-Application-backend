@@ -55,7 +55,7 @@ class MailTransport {
 
   private async productionEmailSender(receiverEmail: string, subject: string, body: string): Promise<void> {
     const mailOptions: IMailOptions = {
-      from: `Chatty App <${config.SENDER_EMAIL!}>`,
+      from: `Peeps Arena <${config.SENDER_EMAIL!}>`,
       to: receiverEmail,
       subject,
       html: body
