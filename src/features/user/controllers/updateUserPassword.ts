@@ -24,14 +24,14 @@ export class Update {
     if (!passwordsMatch) {
       throw new BadRequestError('Invalid credentials');
     }
-  //   const hashedPassword: string = await existingUser.hashPassword(newPassword);
-  //   userService.updatePassword(`${req.currentUser!.username}`, hashedPassword);
-  //   const templateParams: IResetPasswordParams = {
-  //     username: existingUser.username!,
-  //     email: existingUser.email!,
-  //     ipaddress: publicIP.address(),
-  //     date: moment().format('DD//MM//YYYY HH:mm')
-  //   };
+    const hashedPassword: string = await existingUser.hashPassword(newPassword);
+    userService.updatePassword(`${req.currentUser!.username}`, hashedPassword);
+    const templateParams: IResetPasswordParams = {
+      username: existingUser.username!,
+      email: existingUser.email!,
+      ipaddress: publicIP.address(),
+      date: moment().format('DD//MM//YYYY HH:mm')
+    };
   //   const template: string = resetPasswordTemplate.passwordResetConfirmationTemplate(templateParams);
   //   emailQueue.addEmailJob('changePassword', { template, receiverEmail: existingUser.email!, subject: 'Password update confirmation' });
   //   res.status(HTTP_STATUS.OK).json({
