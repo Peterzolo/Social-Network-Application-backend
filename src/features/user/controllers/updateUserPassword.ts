@@ -19,11 +19,11 @@ export class Update {
     if (newPassword !== confirmPassword) {
       throw new BadRequestError('Passwords do not match.');
     }
-  //   const existingUser: IAuthDocument = await authService.getAuthUserByUsername(req.currentUser!.username);
-  //   const passwordsMatch: boolean = await existingUser.comparePassword(currentPassword);
-  //   if (!passwordsMatch) {
-  //     throw new BadRequestError('Invalid credentials');
-  //   }
+    const existingUser: IAuthDocument = await authService.getAuthUserByUsername(req.currentUser!.username);
+    const passwordsMatch: boolean = await existingUser.comparePassword(currentPassword);
+    if (!passwordsMatch) {
+      throw new BadRequestError('Invalid credentials');
+    }
   //   const hashedPassword: string = await existingUser.hashPassword(newPassword);
   //   userService.updatePassword(`${req.currentUser!.username}`, hashedPassword);
   //   const templateParams: IResetPasswordParams = {
