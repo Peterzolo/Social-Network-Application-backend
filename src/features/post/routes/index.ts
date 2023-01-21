@@ -23,9 +23,8 @@ class PostRoutes {
     this.router.delete('/delete-post/:postId', authMiddleware.checkAuthentication, DeletePost.prototype.delete);
     this.router.put('/update-post/:postId', authMiddleware.checkAuthentication, UpdatePost.prototype.post);
     this.router.put('/update-post/image/:postId', authMiddleware.checkAuthentication, UpdatePost.prototype.postWithImage);
+    this.router.post('/post/video/post', authMiddleware.checkAuthentication, CreatePost.prototype.postWithVideo);
     // this.router.get('/post/videos/:page', authMiddleware.checkAuthentication, Get.prototype.postsWithVideos);
-
-    // this.router.post('/post/video/post', authMiddleware.checkAuthentication, Create.prototype.postWithVideo);
 
     // this.router.put('/post/video/:postId', authMiddleware.checkAuthentication, Update.prototype.postWithVideo);
 
