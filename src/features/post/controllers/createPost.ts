@@ -121,10 +121,10 @@ export class CreatePost {
         commentsCount: 0,
         imgVersion: '',
         imgId: '',
-    //     videoId: result.public_id,
-    //     videoVersion: result.version.toString(),
-    //     createdAt: new Date(),
-    //     reactions: { like: 0, love: 0, happy: 0, sad: 0, wow: 0, angry: 0 }
+        videoId: result.public_id,
+        videoVersion: result.version.toString(),
+        createdAt: new Date(),
+        reactions: { like: 0, love: 0, happy: 0, sad: 0, wow: 0, angry: 0 }
     //   } as IPostDocument;
     //   socketIOPostObject.emit('add post', createdPost);
     //   await postCache.savePostToCache({
