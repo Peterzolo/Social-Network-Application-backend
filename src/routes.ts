@@ -9,12 +9,18 @@ import { notificationRoutes } from '@notification/routes/notificationRoutes';
 import { postRoutes } from '@post/routes';
 import { reactionRoutes } from '@reaction/routes';
 import { serverAdapter } from '@service/queues/BaseQueue';
+import { healthRoutes } from '@user/routes/applicationhealthRoute';
 import { userRoutes } from '@user/routes/userRoutes';
 import { Application } from 'express';
 
 const BASE_PATH = '/api/v1';
 export const routeWrapper = (app: Application) => {
   const routes = () => {
+    app.use('', healthRoutes.health());
+    app.use('', healthRoutes.env());
+    app.use('', healthRoutes.instance());
+    app.use('', healthRoutes.fiboRoutes());
+
     app.use('/queues', serverAdapter.getRouter());
     app.use(BASE_PATH, authRoutes.routes());
     app.use(BASE_PATH, authRoutes.signoutRoute());
