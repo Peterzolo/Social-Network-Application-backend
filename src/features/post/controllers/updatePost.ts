@@ -10,7 +10,6 @@ import { UploadApiResponse } from 'cloudinary';
 import { uploads, videoUpload } from '@global/helpers/cloudinary-upload';
 import { BadRequestError } from '@global/helpers/customErrorHandler';
 import { imageQueue } from '@service/queues/imageQueue';
-// import { imageQueue } from '@service/queues/image.queue';
 
 const postCache: PostCache = new PostCache();
 
