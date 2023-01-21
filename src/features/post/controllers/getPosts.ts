@@ -30,10 +30,11 @@ export class Fetch {
     const { page } = req.params;
     const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
     const limit: number = PAGE_SIZE * parseInt(page);
-    const newSkip: number = skip === 0 ? skip : skip + 1;
+    // const newSkip: number = skip === 0 ? skip : skip + 1;
     let posts: IPostDocument[] = [];
-    const cachedPosts: IPostDocument[] = await postCache.getPostsWithImagesFromCache('post', newSkip, limit);
-    posts = cachedPosts.length ? cachedPosts : await postService.getPosts({ imgId: '$ne', gifUrl: '$ne' }, skip, limit, { createdAt: -1 });
+    // const cachedPosts: IPostDocument[] = await postCache.getPostsWithImagesFromCache('post', newSkip, limit);
+    // posts = cachedPosts.length ? cachedPosts : await postService.getPosts({ imgId: '$ne', gifUrl: '$ne' }, skip, limit, { createdAt: -1 });
+    posts = await postService.getPosts({ imgId: '$ne', gifUrl: '$ne' }, skip, limit, { createdAt: -1 });
     res.status(HTTP_STATUS.OK).json({ message: 'All posts with images', posts });
   }
 
