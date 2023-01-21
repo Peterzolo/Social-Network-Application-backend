@@ -64,13 +64,13 @@ class HealthRoutes {
     return this.router;
   }
 
-  // private fibo(data: number): number {
-  //   if (data < 2) {
-  //     return 1;
-  //   } else {
-  //     return this.fibo(data - 2) + this.fibo(data - 1);
-  //   }
-  // }
+  private fibo(data: number): number {
+    if (data < 2) {
+      return 1;
+    } else {
+      return this.fibo(data - 2) + this.fibo(data - 1);
+    }
+  }
 }
 
 export const healthRoutes: HealthRoutes = new HealthRoutes();
