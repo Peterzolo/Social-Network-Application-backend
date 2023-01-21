@@ -28,19 +28,19 @@ class HealthRoutes {
     return this.router;
   }
 
-  // public instance(): Router {
-  //   this.router.get('/instance', async (req: Request, res: Response) => {
-  //     const response = await axios({
-  //       method: 'get',
-  //       url: config.EC2_URL
-  //     });
-  //     res
-  //       .status(HTTP_STATUS.OK)
-  //       .send(`Server is running on EC2 instance with id ${response.data} and process id ${process.pid} on ${moment().format('LL')}`);
-  //   });
+  public instance(): Router {
+    this.router.get('/instance', async (req: Request, res: Response) => {
+      const response = await axios({
+        method: 'get',
+        url: config.EC2_URL
+      });
+      res
+        .status(HTTP_STATUS.OK)
+        .send(`Server is running on EC2 instance with id ${response.data} and process id ${process.pid} on ${moment().format('LL')}`);
+    });
 
-  //   return this.router;
-  // }
+    return this.router;
+  }
 
   // public fiboRoutes(): Router {
   //   this.router.get('/fibo/:num', async (req: Request, res: Response) => {
