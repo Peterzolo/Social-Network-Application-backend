@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { UserCache } from '@service/redis/user.cache';
-import { userQueue } from '@service/queues/user.queue';
-import { joiValidation } from '@global/decorators/joi-validation.decorators';
-import { notificationSettingsSchema } from '@user/schemes/info';
+import { UserCache } from '@service/redis/userCache';
+import { userQueue } from '@service/queues/userQueue';
+import { joiValidation } from '@global/typscript-decorator/joi-validation-decorator';
+import { notificationSettingsSchema } from '@user/schemes/userValidateSchema';
 
 const userCache: UserCache = new UserCache();
 
