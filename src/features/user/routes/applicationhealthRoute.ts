@@ -12,13 +12,13 @@ class HealthRoutes {
     this.router = express.Router();
   }
 
-  // public health(): Router {
-  //   this.router.get('/health', (req: Request, res: Response) => {
-  //     res.status(HTTP_STATUS.OK).send(`Health: Server instance is healthy with process id ${process.pid} on ${moment().format('LL')}`);
-  //   });
+  public health(): Router {
+    this.router.get('/health', (req: Request, res: Response) => {
+      res.status(HTTP_STATUS.OK).send(`Health: Server instance is healthy with process id ${process.pid} on ${moment().format('LL')}`);
+    });
 
-  //   return this.router;
-  // }
+    return this.router;
+  }
 
   // public env(): Router {
   //   this.router.get('/env', (req: Request, res: Response) => {
