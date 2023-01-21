@@ -17,6 +17,7 @@ class Config {
   public SENDGRID_API_KEY: string | undefined;
   public SENDER_EMAIL: string | undefined;
   public SENDER_EMAIL_PASSWORD: string | undefined;
+  public EC2_URL: string | undefined;
 
   private readonly DEFAULT_DATABASE_URL = 'mongodb://127.0.0.1:27017/PeepsArena';
 
@@ -34,6 +35,7 @@ class Config {
     this.SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || '';
     this.SENDER_EMAIL = process.env.SENDER_EMAIL || '';
     this.SENDER_EMAIL_PASSWORD = process.env.SENDER_EMAIL_PASSWORD || '';
+    this.EC2_URL = process.env.EC2_URL || '';
   }
 
   public createLogger(name: string): bunyan {
