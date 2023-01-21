@@ -9,7 +9,7 @@ import { socketIOPostObject } from '@socket/postSocket';
 import { postQueue } from '@service/queues/postQueue';
 import { UploadApiResponse } from 'cloudinary';
 import { BadRequestError } from '@global/helpers/customErrorHandler';
-import { uploads } from '@global/helpers/cloudinary-upload';
+import { uploads, videoUpload } from '@global/helpers/cloudinary-upload';
 import { imageQueue } from '@service/queues/imageQueue';
 
 const postCache: PostCache = new PostCache();
@@ -100,10 +100,10 @@ export class CreatePost {
   public async postWithVideo(req: Request, res: Response): Promise<void> {
     const { post, bgColor, privacy, gifUrl, profilePicture, feelings, video } = req.body;
 
-    //   const result: UploadApiResponse = (await videoUpload(video)) as UploadApiResponse;
-    //   if (!result?.public_id) {
-    //     throw new BadRequestError(result.message);
-    //   }
+    const result: UploadApiResponse = (await videoUpload(video)) as UploadApiResponse;
+    if (!result?.public_id) {
+      throw new BadRequestError(result.message);
+    }
 
     //   const postObjectId: ObjectId = new ObjectId();
     //   const createdPost: IPostDocument = {
