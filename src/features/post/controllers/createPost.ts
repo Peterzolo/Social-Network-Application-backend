@@ -105,14 +105,14 @@ export class CreatePost {
       throw new BadRequestError(result.message);
     }
 
-    //   const postObjectId: ObjectId = new ObjectId();
-    //   const createdPost: IPostDocument = {
-    //     _id: postObjectId,
-    //     userId: req.currentUser!.userId,
-    //     username: req.currentUser!.username,
-    //     email: req.currentUser!.email,
-    //     avatarColor: req.currentUser!.avatarColor,
-    //     profilePicture,
+      const postObjectId: ObjectId = new ObjectId();
+      const createdPost: IPostDocument = {
+        _id: postObjectId,
+        userId: req.currentUser!.userId,
+        username: req.currentUser!.username,
+        email: req.currentUser!.email,
+        avatarColor: req.currentUser!.avatarColor,
+        profilePicture,
     //     post,
     //     bgColor,
     //     feelings,
