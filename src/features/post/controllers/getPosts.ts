@@ -15,14 +15,14 @@ export class Fetch {
     const newSkip: number = skip === 0 ? skip : skip + 1;
     let posts: IPostDocument[] = [];
     let totalPosts = 0;
-    // const cachedPosts: IPostDocument[] = await postCache.getPostsFromCache('post', newSkip, limit);
-    // if (cachedPosts.length) {
-    //   posts = cachedPosts;
-    //   totalPosts = await postCache.getTotalPostsInCache();
-    // } else {
-    posts = await postService.getPosts({}, skip, limit, { createdAt: -1 });
-    totalPosts = await postService.postsCount();
-    // }
+    const cachedPosts: IPostDocument[] = await postCache.getPostsFromCache('post', newSkip, limit);
+    if (cachedPosts.length) {
+      posts = cachedPosts;
+      totalPosts = await postCache.getTotalPostsInCache();
+    } else {
+      posts = await postService.getPosts({}, skip, limit, { createdAt: -1 });
+      totalPosts = await postService.postsCount();
+    }
     res.status(HTTP_STATUS.OK).json({ message: 'Posts fetched successfully', postCounts: totalPosts, allPosts: posts });
   }
 
