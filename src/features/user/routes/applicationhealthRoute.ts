@@ -20,13 +20,13 @@ class HealthRoutes {
     return this.router;
   }
 
-  // public env(): Router {
-  //   this.router.get('/env', (req: Request, res: Response) => {
-  //     res.status(HTTP_STATUS.OK).send(`This is the ${config.NODE_ENV} environment.rfrgrg5t3e2e3e3r4g5g`);
-  //   });
+  public env(): Router {
+    this.router.get('/env', (req: Request, res: Response) => {
+      res.status(HTTP_STATUS.OK).send(`This is the ${config.NODE_ENV} environment.rfrgrg5t3e2e3e3r4g5g`);
+    });
 
-  //   return this.router;
-  // }
+    return this.router;
+  }
 
   // public instance(): Router {
   //   this.router.get('/instance', async (req: Request, res: Response) => {
