@@ -14,6 +14,7 @@ class Application {
     const app: Express = express();
     const server: PeepsArena = new PeepsArena(app);
     server.start();
+    Application.handleExit();
   }
   private loadConfiguration(): void {
     config.validateConfig();
@@ -26,24 +27,24 @@ class Application {
       Application.shutDownProperly(1);
     });
 
-    process.on('unhandleRejection', (reason: Error) => {
-      log.error(`Unhandled rejection at promise: ${reason}`);
-      Application.shutDownProperly(2);
-    });
+    // process.on('unhandleRejection', (reason: Error) => {
+    //   log.error(`Unhandled rejection at promise: ${reason}`);
+    //   Application.shutDownProperly(2);
+    // });
 
-    process.on('SIGTERM', () => {
-      log.error('Caught SIGTERM');
-      Application.shutDownProperly(2);
-    });
+    // process.on('SIGTERM', () => {
+    //   log.error('Caught SIGTERM');
+    //   Application.shutDownProperly(2);
+    // });
 
-    process.on('SIGINT', () => {
-      log.error('Caught SIGINT');
-      Application.shutDownProperly(2);
-    });
+    // process.on('SIGINT', () => {
+    //   log.error('Caught SIGINT');
+    //   Application.shutDownProperly(2);
+    // });
 
-    process.on('exit', () => {
-      log.error('Exiting');
-    });
+    // process.on('exit', () => {
+    //   log.error('Exiting');
+    // });
   }
 
   private static shutDownProperly(exitCode: number): void {
