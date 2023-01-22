@@ -41,8 +41,8 @@ function generateAvatar(text: string, backgroundColor: string, foregroundColor =
   const canvas = createCanvas(200, 200);
   const context = canvas.getContext('2d');
 
-  //   context.fillStyle = backgroundColor;
-  //   context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = backgroundColor;
+  context.fillRect(0, 0, canvas.width, canvas.height);
 
   //   context.font = 'normal 80px sans-serif';
   //   context.fillStyle = foregroundColor;
