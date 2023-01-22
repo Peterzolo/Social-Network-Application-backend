@@ -21,7 +21,9 @@ interface IUserAll {
   userId: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const postCache: PostCache = new PostCache();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const userCache: UserCache = new UserCache();
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const followerCache: FollowerCache = new FollowerCache();

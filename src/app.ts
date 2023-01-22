@@ -17,6 +17,18 @@ class Application {
     config.validateConfig();
     config.cloudinaryConfig();
   }
+
+  private static shutDownProperly(exitCode: number): void {
+    Promise.resolve()
+      .then(() => {
+        log.info('Shutdown complete');
+        process.exit(exitCode);
+      })
+      .catch((error) => {
+        log.error(`Error during shutdown: ${error}`);
+        process.exit(1);
+      });
+  }
 }
 
 const application: Application = new Application();
