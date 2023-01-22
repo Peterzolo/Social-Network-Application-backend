@@ -37,10 +37,10 @@ class Application {
       Application.shutDownProperly(2);
     });
 
-    // process.on('SIGINT', () => {
-    //   log.error('Caught SIGINT');
-    //   Application.shutDownProperly(2);
-    // });
+    process.on('SIGINT', () => {
+      log.error('Caught SIGINT');
+      Application.shutDownProperly(2);
+    });
 
     // process.on('exit', () => {
     //   log.error('Exiting');
