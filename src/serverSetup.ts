@@ -38,6 +38,7 @@ export class PeepsArena {
     this.routesMiddleware(this.app);
     this.globalErrorHandler(this.app);
     this.startServer(this.app);
+    this.apiMonitoring(this.app);
   }
 
   private securityMiddleware(app: Application): void {
