@@ -33,9 +33,9 @@ function avatarColor(): string {
     '#1a237e',
     '#1de9b6',
     '#d84315'
-//   ];
-//   return colors[floor(random(0.9) * colors.length)];
-// }
+  ];
+  return colors[floor(random(0.9) * colors.length)];
+}
 
 // function generateAvatar(text: string, backgroundColor: string, foregroundColor = 'white') {
 //   const canvas = createCanvas(200, 200);
