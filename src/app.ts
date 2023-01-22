@@ -42,9 +42,9 @@ class Application {
       Application.shutDownProperly(2);
     });
 
-    // process.on('exit', () => {
-    //   log.error('Exiting');
-    // });
+    process.on('exit', () => {
+      log.error('Exiting');
+    });
   }
 
   private static shutDownProperly(exitCode: number): void {
