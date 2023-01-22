@@ -87,6 +87,9 @@ export class PeepsArena {
   }
 
   private async startServer(app: Application): Promise<void> {
+    if (!config.JWT_TOKEN_SECRET) {
+      throw new Error('JWT_TOKEN must be provided');
+    }
     try {
       const httpServer: http.Server = new http.Server(app);
       const socketIO: Server = await this.createSocketIO(httpServer);
