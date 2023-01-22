@@ -44,14 +44,14 @@ function generateAvatar(text: string, backgroundColor: string, foregroundColor =
   context.fillStyle = backgroundColor;
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  //   context.font = 'normal 80px sans-serif';
-  //   context.fillStyle = foregroundColor;
-  //   context.textAlign = 'center';
-  //   context.textBaseline = 'middle';
-  //   context.fillText(text, canvas.width / 2, canvas.height / 2);
+    context.font = 'normal 80px sans-serif';
+    context.fillStyle = foregroundColor;
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillText(text, canvas.width / 2, canvas.height / 2);
 
-  //   return canvas.toDataURL('image/png');
-  // }
+    return canvas.toDataURL('image/png');
+  }
 
   // async function seedUserData(count: number): Promise<void> {
   //   let i = 0;
