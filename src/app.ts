@@ -3,7 +3,9 @@ import { mongoDbConnect } from './dbSetup';
 import { PeepsArena } from './serverSetup';
 import dotenv from 'dotenv';
 import { config } from './configuration';
+import Logger from 'bunyan';
 dotenv.config();
+const log: Logger = config.createLogger('app');
 
 class Application {
   public initializeApp(): void {
