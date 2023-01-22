@@ -116,6 +116,7 @@ export class PeepsArena {
 
   private startHttpServer(httpServer: http.Server): void {
     log.info(`Redis server started on process ID ${process.pid}`);
+    log.info(`Worker with process id of ${process.pid} has started...`);
     httpServer.listen(PORT, () => {
       log.info(`Server started on port ${PORT}`);
     });
