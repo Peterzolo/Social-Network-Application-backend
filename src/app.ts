@@ -32,10 +32,10 @@ class Application {
       Application.shutDownProperly(2);
     });
 
-    // process.on('SIGTERM', () => {
-    //   log.error('Caught SIGTERM');
-    //   Application.shutDownProperly(2);
-    // });
+    process.on('SIGTERM', () => {
+      log.error('Caught SIGTERM');
+      Application.shutDownProperly(2);
+    });
 
     // process.on('SIGINT', () => {
     //   log.error('Caught SIGINT');
