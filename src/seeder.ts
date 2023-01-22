@@ -61,13 +61,13 @@ function generateAvatar(text: string, backgroundColor: string, foregroundColor =
         const color = avatarColor();
         const avatar = generateAvatar(username.charAt(0).toUpperCase(), color);
 
-  //     const body = {
-  //       username,
-  //       email: faker.internet.email(),
-  //       password: 'qwerty',
-  //       avatarColor: color,
-  //       avatarImage: avatar
-  //     };
+      const body = {
+        username,
+        email: faker.internet.email(),
+        password: 'qwerty',
+        avatarColor: color,
+        avatarImage: avatar
+      };
   //     console.log(`***ADDING USER TO DATABASE*** - ${i + 1} of ${count} - ${username}`);
   //     await axios.post(`${process.env.API_URL}/register`, body);
   //   }
