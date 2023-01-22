@@ -64,7 +64,7 @@ async function seedUserData(count: number): Promise<void> {
       const body = {
         username,
         email: faker.internet.email(),
-        password: 'qwerty',
+        password: 'Password123*',
         avatarColor: color,
         avatarImage: avatar
       };
