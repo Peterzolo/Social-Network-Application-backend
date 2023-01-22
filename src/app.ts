@@ -27,10 +27,10 @@ class Application {
       Application.shutDownProperly(1);
     });
 
-    // process.on('unhandleRejection', (reason: Error) => {
-    //   log.error(`Unhandled rejection at promise: ${reason}`);
-    //   Application.shutDownProperly(2);
-    // });
+    process.on('unhandleRejection', (reason: Error) => {
+      log.error(`Unhandled rejection at promise: ${reason}`);
+      Application.shutDownProperly(2);
+    });
 
     // process.on('SIGTERM', () => {
     //   log.error('Caught SIGTERM');
