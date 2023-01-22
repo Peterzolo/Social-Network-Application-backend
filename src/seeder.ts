@@ -53,13 +53,13 @@ function generateAvatar(text: string, backgroundColor: string, foregroundColor =
     return canvas.toDataURL('image/png');
   }
 
-  // async function seedUserData(count: number): Promise<void> {
-  //   let i = 0;
-  //   try {
-  //     for (i = 0; i < count; i++) {
-  //       const username: string = faker.unique(faker.word.adjective, [8]);
-  //       const color = avatarColor();
-  //       const avatar = generateAvatar(username.charAt(0).toUpperCase(), color);
+  async function seedUserData(count: number): Promise<void> {
+    let i = 0;
+    try {
+      for (i = 0; i < count; i++) {
+        const username: string = faker.unique(faker.word.adjective, [8]);
+        const color = avatarColor();
+        const avatar = generateAvatar(username.charAt(0).toUpperCase(), color);
 
   //     const body = {
   //       username,
