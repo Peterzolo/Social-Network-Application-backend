@@ -68,9 +68,9 @@ function generateAvatar(text: string, backgroundColor: string, foregroundColor =
         avatarColor: color,
         avatarImage: avatar
       };
-  //     console.log(`***ADDING USER TO DATABASE*** - ${i + 1} of ${count} - ${username}`);
-  //     await axios.post(`${process.env.API_URL}/register`, body);
-  //   }
+      console.log(`***ADDING USER TO DATABASE*** - ${i + 1} of ${count} - ${username}`);
+      await axios.post(`${process.env.API_URL}/register`, body);
+    }
   // } catch (error: any) {
   //   console.log(error?.response?.data);
   // }
