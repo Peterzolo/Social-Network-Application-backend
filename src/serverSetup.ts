@@ -13,7 +13,9 @@ import { createAdapter } from '@socket.io/redis-adapter';
 import { config } from '@root/configuration';
 import { routeWrapper } from '@root/routes';
 import Logger from 'bunyan';
-import apiStats from 'swagger-stats';
+// import apiStats from 'swagger-stats';
+
+import swStats from 'swagger-stats';
 import { CustomError, IErrorResponse } from '@global/helpers/customErrorHandler';
 import { SocketIOPostHandler } from '@socket/postSocket';
 import { SocketIOFollowerHandler } from '@socket/followerSocket';
@@ -76,7 +78,7 @@ export class PeepsArena {
 
   private apiMonitoring(app: Application): void {
     app.use(
-      apiStats.getMiddleware({
+      swStats.getMiddleware({
         uriPath: '/api-monitoring'
       })
     );
