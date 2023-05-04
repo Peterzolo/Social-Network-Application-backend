@@ -23,10 +23,10 @@ export class SignUp {
   public async create(req: Request, res: Response): Promise<void> {
     const { username, email, password, avatarColor, avatarImage } = req.body;
     const checkIfUserExist: IAuthDocument = await authService.getUserByUsernameOrEmail(username, email);
-    if (checkIfUserExist) {
-      throw new BadRequestError('Invalid credentials');
-    }
 
+    if (checkIfUserExist) {
+      throw new BadRequestError('User already exists');
+    }
     const authObjectId: ObjectId = new ObjectId();
     const userObjectId: ObjectId = new ObjectId();
     const uId = `${Helpers.generateRandomIntegers(12)}`;
@@ -42,13 +42,14 @@ export class SignUp {
       avatarColor
     });
     const result: UploadApiResponse = (await uploads(avatarImage, `${userObjectId}`, true, true)) as UploadApiResponse;
+    console.log('PROFILE PICTURE', result);
     if (!result?.public_id) {
       throw new BadRequestError('File upload: Error occurred. Try again.');
     }
 
     // Add to redis cache
     const userDataForCache: IUserDocument = SignUp.prototype.userData(authData, userObjectId);
-    userDataForCache.profilePicture = `https://res.cloudinary.com/dyamr9ym3/image/upload/v${result.version}/${userObjectId}`;
+    userDataForCache.profilePicture = `https://res.cloudinary.com/dzj0v4upp/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     // Add to database
